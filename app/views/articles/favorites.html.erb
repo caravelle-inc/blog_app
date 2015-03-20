@@ -1,0 +1,8 @@
+<h1>Favorite</h1>
+
+<% @favorites.each do |a| %>
+    <li>
+      <% @article_title = Article.find(a.article_id) %>
+      <%= @article_title.title %>
+    </li>
+<% end %>

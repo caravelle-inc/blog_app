@@ -1,0 +1,24 @@
+<h1>Add New</h1>
+
+<%= form_for @article do |f| %>
+
+    <p>
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+      <% if @article.errors.any? %>
+          <%= @article.errors.messages[:title][0]%>
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :content %><br>
+      <%= f.text_field :content %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
+
+<% end %>
+
+<p><%= link_to "[Back]", articles_path %></p>

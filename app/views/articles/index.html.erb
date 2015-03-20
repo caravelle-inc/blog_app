@@ -1,0 +1,15 @@
+<h1>Index</h1>
+
+<% @articles.each do |a| %>
+    <li>
+      <%= link_to a.title, article_path(a.id) %>
+      <% @user_name = User.find(a.user_id) %>
+      <%= @user_name.name %>
+      <%= link_to "[Edit]", edit_article_path(a.id) %>
+      <%= link_to "[Delete]", article_path(a.id),method: :delete, data: {confirm: "削除していいですか？"} %>
+      <%= link_to "[Favorite]", favorite_article_path(a.id),method: :favorite, data: {confirm: "お気に入りに追加しますか"} %>
+    </li>
+
+<% end %>
+
+<p><%= link_to "Add New", new_article_path %></p>
