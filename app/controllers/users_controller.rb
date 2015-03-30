@@ -2,12 +2,13 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @articles = Article.all
+    @articles_pn = Article.all
   end
 
   def show
     @user = User.find(params[:id])
-    @articles = User.find(params[:id]).article
+    @articles_pn = Article.all
+    @user_articles = User.find(params[:id]).article
   end
 
   def destroy

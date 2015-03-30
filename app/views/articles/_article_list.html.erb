@@ -1,3 +1,5 @@
+<%- if false -%>
+
 <% articles.each do |article| %>
     <li>
       <%= link_to article.title, article_path(article.id) %>
@@ -14,3 +16,5 @@
       <% end %>
     </li>
 <% end %>
+
+<%- end -%>

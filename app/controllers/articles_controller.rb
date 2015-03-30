@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
     before_action :set_article, only:[:show, :edit, :update, :destroy, :favorite]
+    before_action :set_articles, only:[:index, :show, :new, :favorite, :favorite, :favorites]
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite]
 
     def index
@@ -7,12 +8,9 @@ class ArticlesController < ApplicationController
     end
 
     def show
-      @articles = Article.all
-
     end
 
     def new
-      @articles = Article.all
       @article = Article.new
     end
 
@@ -48,7 +46,6 @@ class ArticlesController < ApplicationController
     end
 
     def favorite
-      @articles = Article.all
       @favorite = FavoriteArticle.new
       @favorite.user_id = current_user.id
       @favorite.article_id = @article.id
@@ -60,7 +57,6 @@ class ArticlesController < ApplicationController
     end
 
     def favorites
-      @articles = Article.all
       @user = current_user.id
       @favorites = FavoriteArticle.where(:user_id => @user)
     end
@@ -84,5 +80,9 @@ class ArticlesController < ApplicationController
       @article = Article.find(params[:id])
     end
 
-  end
+    def set_articles
+      @articles_pn = Article.all
+    end
+
+end
 
