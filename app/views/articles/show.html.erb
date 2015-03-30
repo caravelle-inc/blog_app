@@ -1,5 +1,25 @@
-<h1><%= @article.title %></h1>
-<h3>Content</h3>
+<div class="main">
 
-<p><%= @article.content %></p>
+<h2><%= @article.title %></h2>
 
+  <div class="sidebar">
+    <div>
+      <h3>< Pickup ></h3>
+      <% @articles.each do |a| %>
+          <li>
+            <%= link_to a.title, article_path(a.id) %>
+          </li>
+      <% end %>
+      <h3>< New ></h3>
+      <% @articles.each do |a| %>
+          <li>
+            <%= link_to a.title, article_path(a.id) %>
+          </li>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="contents">
+  <p><%= @article.content %></p>
+</div>

@@ -1,5 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
+#   before_action :configure_permitted_parameters
 
   # GET /resource/sign_in
   # def new
@@ -12,14 +13,19 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  #  def destroy
+     #super
+   # end
 
   # protected
 
   # You can put the params you want to permit in the empty array.
   # def configure_sign_in_params
-  #   devise_parameter_sanitizer.for(:sign_in) << :attribute
+  #   devise_parjameter_sanitizer.for(:sign_in) << :attribute
   # end
+
+   # def configure_permitted_parameters
+   #    devise_parameter_sanitizer.for(:sign_up) << :name
+   #    devise_parameter_sanitizer.for(:account_update) << :name
+   # end
 end

@@ -1,0 +1,51 @@
+<div class="main">
+
+<h2>管理者ページ</h2>
+
+  <div class="sidebar">
+    <div>
+      <h3>< Pickup ></h3>
+      <% @articles.each do |a| %>
+          <li>
+            <%= link_to a.title, article_path(a.id) %>
+          </li>
+      <% end %>
+      <h3>< New ></h3>
+      <% @articles.each do |a| %>
+          <li>
+            <%= link_to a.title, article_path(a.id) %>
+          </li>
+      <% end %>
+    </div>
+  </div>
+
+<p><%= link_to '管理者情報編集', edit_admin_registration_path, :class => 'navbar-link' %> |</p>
+
+  <div class="contents">
+
+  <div>
+  <h3>ユーザ一覧</h3>
+
+
+<% @users.each do |a| %>
+    <li>
+      <%= a.name %>
+      <%= link_to "削除", user_path(a.id), data: { confirm: "本当に良いですか？" }, method: :delete %>
+    </li>
+<% end %>
+</div>
+<%#= link_to "アカウント作成", new_user_registration_path, :class => 'navbar-link' %>
+
+<div>記事一覧
+  <h3>ユーザ一覧</h3>
+<% @articles.each do |a| %>
+    <li>
+      <%= link_to a.title, article_path(a.id) %>
+      <% @user_name = User.find(a.user_id) %>
+      <%= @user_name.name %>
+      <%= link_to "[Delete]", article_path(a.id), method: :delete, data: {confirm: "削除していいですか？"} %>
+    </li>
+<% end %>
+</div>
+</div>
+</div>

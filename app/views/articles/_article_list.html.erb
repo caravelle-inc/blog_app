@@ -1,0 +1,16 @@
+<% articles.each do |article| %>
+    <li>
+      <%= link_to article.title, article_path(article.id) %>
+      <% if user_signed_in? %>
+          <% if favorite_article?(article) %>
+              <%= button_to "お気に入り削除", favorite_destroy_article_path(article.id), method: :delete, data: {confirm: "削除していいですか？"} %>
+          <% else %>
+              <%= button_to "お気に入り", favorite_article_path(article.id), method: :favorite, data: {confirm: "お気に入りに追加しますか"} %>
+          <% end %>
+          <% if article_owner?(article) %>
+              <%= link_to "[編集]", edit_article_path(article.id) %>
+              <%= button_to "削除", article_path(article.id), method: :delete, data: {confirm: "削除していいですか？"} %>
+          <% end %>
+      <% end %>
+    </li>
+<% end %>

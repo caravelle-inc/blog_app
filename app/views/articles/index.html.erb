@@ -1,15 +1,24 @@
-<h1>Index</h1>
+<div class="main">
+  <h2>Article</h2>
 
-<% @articles.each do |a| %>
-    <li>
-      <%= link_to a.title, article_path(a.id) %>
-      <% @user_name = User.find(a.user_id) %>
-      <%= @user_name.name %>
-      <%= link_to "[Edit]", edit_article_path(a.id) %>
-      <%= link_to "[Delete]", article_path(a.id),method: :delete, data: {confirm: "削除していいですか？"} %>
-      <%= link_to "[Favorite]", favorite_article_path(a.id),method: :favorite, data: {confirm: "お気に入りに追加しますか"} %>
-    </li>
+  <div class="sidebar">
+    <div>
+      <h3>< Pickup ></h3>
+      <% @articles.each do |article| %>
+          <li>
+            <%= link_to article.title, article_path(article.id) %>
+          </li>
+      <% end %>
+      <h3>< New ></h3>
+      <% @articles.each do |article| %>
+          <li>
+            <%= link_to article.title, article_path(article.id) %>
+          </li>
+      <% end %>
+    </div>
+  </div>
 
-<% end %>
-
-<p><%= link_to "Add New", new_article_path %></p>
+  <div class="contents">
+    <%= render partial: "articles/article_list", locals: {articles: @articles} %>
+  </div>
+</div>

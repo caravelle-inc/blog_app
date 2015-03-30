@@ -1,15 +1,18 @@
 class ArticlesController < ApplicationController
     before_action :set_article, only:[:show, :edit, :update, :destroy, :favorite]
-    before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :destroy, :favorite]
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite]
 
     def index
       @articles = Article.all
     end
 
     def show
+      @articles = Article.all
+
     end
 
     def new
+      @articles = Article.all
       @article = Article.new
     end
 
@@ -36,11 +39,16 @@ class ArticlesController < ApplicationController
     end
 
     def destroy
+      @favorite = FavoriteArticle.where(:article_id => "params[:id]")
+      @favorite.each do |f|
+        f.delete
+      end
       @article.delete
       redirect_to articles_path
     end
 
     def favorite
+      @articles = Article.all
       @favorite = FavoriteArticle.new
       @favorite.user_id = current_user.id
       @favorite.article_id = @article.id
@@ -52,7 +60,17 @@ class ArticlesController < ApplicationController
     end
 
     def favorites
-      @favorites = FavoriteArticle.all
+      @articles = Article.all
+      @user = current_user.id
+      @favorites = FavoriteArticle.where(:user_id => @user)
+    end
+
+    def favorite_destroy
+      @favorite = FavoriteArticle.where(:article_id => params[:id])
+      @favorite.each do |a|
+        a.delete
+      end
+      redirect_to favorites_articles_path
     end
 
 

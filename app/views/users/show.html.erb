@@ -1,0 +1,57 @@
+<div class="main">
+  <h2><%= @user.name + '_Mypage' %></h2>
+
+  <div class="sidebar">
+    <div>
+      <h3>< Pickup ></h3>
+      <% @articles.each do |article| %>
+          <li>
+            <%= link_to article.title, article_path(article.id) %>
+          </li>
+      <% end %>
+      <h3>< New ></h3>
+      <% @articles.each do |article| %>
+          <li>
+            <%= link_to article.title, article_path(article.id) %>
+          </li>
+      <% end %>
+    </div>
+  </div>
+
+  <p>
+    <% if !(current_user == @user) %>
+        <% if Friendship.where(:to_user_id => @user.id).present? && Friendship.where(:from_user_id => current_user.id).present? %>
+            <%= link_to "unfollow", follow_destroy_user_path(@user.id), data: {confirm: "フォローを外しますか？"}, method: :delete %>
+        <% else %>
+            <%= link_to "follow", follow_user_path(@user.id), data: {confirm: "フォローしますか？"}, method: :follow %>
+        <% end %>
+    <% end %>
+  </p>
+
+  <p><%= link_to 'プロフィール編集', edit_user_registration_path %></p>
+
+  <p><%= link_to "Artcle New", new_article_path %></p>
+
+  <div class="contents">
+
+    <%#- if false -%>
+
+    <div>
+      <p id="notice"><%= notice %></p>
+      <strong>- Follow -</strong>
+      <% @user.friends_of_from_user.each do |friend| %>
+          <div><%= friend.name %></div>
+      <% end %>
+      <strong>- Follower -</strong>
+      <% @user.friends_of_to_user.each do |friend| %>
+          <div><%= friend.name %></div>
+      <% end %>
+    </div>
+
+    <%#- end -%>
+    <div>
+      <h3>< My articles ></h3>
+      <%= render partial: "articles/article_list", locals: {articles: @articles} %>
+    </div>
+  </div>
+</div>

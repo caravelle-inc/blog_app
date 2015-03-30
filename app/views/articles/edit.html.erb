@@ -1,5 +1,24 @@
-<h1>Edit</h1>
+<h2>Article Edit</h2>
 
+<div class="sidebar">
+  <div>
+    <h3>< Pickup ></h3>
+    <% @articles.each do |a| %>
+        <li>
+          <%= link_to a.title, article_path(a.id) %>
+        </li>
+    <% end %>
+    <h3>< New ></h3>
+    <% @articles.each do |a| %>
+        <li>
+          <%= link_to a.title, article_path(a.id) %>
+        </li>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="contents">
 <%= form_for @article do |f| %>
 
     <p>
@@ -22,4 +41,4 @@
 <% end %>
 
 <p><%= link_to "[Back]", articles_path %></p>
-
+</div>

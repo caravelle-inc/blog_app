@@ -1,8 +1,33 @@
-<h1>Favorite</h1>
+<div class="main">
+<h2>お気に入り</h2>
+
+  <div class="sidebar">
+    <div>
+      <h3>< Pickup ></h3>
+      <% @articles.each do |a| %>
+          <li>
+            <%= link_to a.title, article_path(a.id) %>
+          </li>
+      <% end %>
+      <h3>< New ></h3>
+      <% @articles.each do |a| %>
+          <li>
+            <%= link_to a.title, article_path(a.id) %>
+          </li>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="contents">
+
 
 <% @favorites.each do |a| %>
     <li>
       <% @article_title = Article.find(a.article_id) %>
-      <%= @article_title.title %>
+      <%= link_to @article_title.title, article_path(@article_title.id) %>
+      <%= button_to "削除", favorite_destroy_article_path(@article_title.id),method: :delete, data: {confirm: "削除していいですか？"} %>
     </li>
 <% end %>
+</div>
+</div>
+

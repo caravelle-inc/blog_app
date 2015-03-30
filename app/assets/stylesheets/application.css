@@ -13,3 +13,48 @@
  *= require_tree .
  *= require_self
  */
+
+.background
+{
+    /*background-color: #F6F6F6;*/
+}
+
+.header
+{
+    margin-top: 80px;
+    margin-right: 200px;
+    margin-bottom: -50px;
+    border-top: 60px;
+    /*background-color: #DAFFE7;*/
+}
+
+
+.menu
+{
+    margin-top: 10px;
+    margin-left: 80px;
+    /*background-color: #FFF0E4;*/
+}
+
+.main
+{
+    margin-top: 80px;
+    margin-left: 150px;
+
+    /*height: 600px;*/
+    /*width: 1300px;*/
+    /*background-color: #FFF0E4;*/
+}
+
+.contents
+{
+    margin: 30px;
+    /*float: left;*/
+}
+
+.sidebar
+{
+    float: right;
+    margin-right: 250px;
+
+}
