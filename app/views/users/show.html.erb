@@ -43,11 +43,11 @@
       <p id="notice"><%= notice %></p>
       <strong>- Follow -</strong>
       <% @user.friends_of_from_user.each do |friend| %>
-          <div><%= friend.name %></div>
+          <div><%= link_to friend.name, user_path(friend.id) %></div>
       <% end %>
       <strong>- Follower -</strong>
       <% @user.friends_of_to_user.each do |friend| %>
-          <div><%= friend.name %></div>
+          <div><%= link_to friend.name, user_path(friend.id) %></div>
       <% end %>
     </div>
 
