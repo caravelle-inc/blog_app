@@ -1,6 +1,6 @@
 <div class="main">
 
-<h2><%= @article.title %></h2>
+  <h2><%= @article.title %></h2>
 
   <div class="sidebar">
     <div>
@@ -11,7 +11,7 @@
           </li>
       <% end %>
       <h3>< New ></h3>
-      <% @articles_pn.each do |a| %>
+      <% @articles_new.each do |a| %>
           <li>
             <%= link_to a.title, article_path(a.id) %>
           </li>
@@ -20,9 +20,29 @@
   </div>
 
 
-<div class="contents">
+  <%- if false -%>
+
+
+      <div class="contents">
+        <div>
+          <iframe width="420" height="315" src="https://www.youtube.com/watch?v=2Hv_EGZgFzo" frameborder="0" allowfullscreen></iframe>
+          <p><%= @article.content %></p>
+          <iframe width="420" height="315" src=@article.image frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+
+  <%- end -%>
+
+
   <div>
+    <iframe width="560" height="315" src="<%= @article.movie %>" frameborder="0" allowfullscreen></iframe>
     <p><%= @article.content %></p>
+
   </div>
-</div>
+
+  <!--url処理-->
+  <!--①https://www.youtube.com/watch?v=0-ZjYq8-SHw-->
+  <!--②https://www.youtube.com/embed/0-ZjYq8-SHw-->
+  <!--①内のwatch?v=　を②のembed/の形にして保存-->
+
 </div>

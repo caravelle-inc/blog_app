@@ -10,7 +10,7 @@
           </li>
       <% end %>
       <h3>< New ></h3>
-      <% @articles_pn.each do |a| %>
+      <% @articles_new.each do |a| %>
           <li>
             <%= link_to a.title, article_path(a.id) %>
           </li>

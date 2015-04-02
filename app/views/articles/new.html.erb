@@ -1,5 +1,5 @@
 <div class="main">
-<h2>Article New</h2>
+  <h2>Article New</h2>
 
   <div class="sidebar">
     <div>
@@ -10,7 +10,7 @@
           </li>
       <% end %>
       <h3>< New ></h3>
-      <% @articles_pn.each do |a| %>
+      <% @articles_new.each do |a| %>
           <li>
             <%= link_to a.title, article_path(a.id) %>
           </li>
@@ -19,26 +19,31 @@
   </div>
   <div class="contents">
 
-<%= form_for @article do |f| %>
+    <%= form_for @article do |f| %>
 
-    <p>
-      <%= f.label :title %><br>
-      <%= f.text_field :title %>
-      <% if @article.errors.any? %>
-          <%= @article.errors.messages[:title][0]%>
-      <% end %>
-    </p>
+        <p>
+          <%= f.label :title %><br>
+          <%= f.text_field :title %>
+          <% if @article.errors.any? %>
+              <%= @article.errors.messages[:title][0]%>
+          <% end %>
+        </p>
 
-    <p>
-      <%= f.label :content %><br>
-      <%= f.text_field :content %>
-    </p>
+        <p>
+          <%= f.label :content %><br>
+          <%= f.text_field :content %>
+        </p>
 
-    <p>
-      <%= f.submit %>
-    </p>
+        <p>
+          <%= f.label :URL %><br>
+          <%= f.url_field :movie %>
+        </p>
 
-<% end %>
+        <p>
+          <%= f.submit %>
+        </p>
 
-</div>
+    <% end %>
+
+  </div>
 </div>

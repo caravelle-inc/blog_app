@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :friends_of_to_user, :through => :friendships_of_to_user, :source => 'from_user'
   has_many :article
 
+  mount_uploader :image, ImageUploader
+
   def friends
     friends_of_from_user + friends_of_to_user
   end

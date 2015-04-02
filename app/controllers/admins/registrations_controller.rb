@@ -2,6 +2,8 @@ class Admins::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 #   before_filter :configure_permitted_parameters, if: :devise_controller?
+  protect_from_forgery with: :null_session
+  before_filter :configure_permitted_parameters, if: :devise_controller?
 
 
   # GET /resource/sign_up
@@ -38,6 +40,14 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << [:name]
+    devise_parameter_sanitizer.for(:account_update) << [:name]
+  end
 
   # protected
   #

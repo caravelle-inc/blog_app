@@ -13,7 +13,8 @@
 
     <div align="right">
       <% if user_signed_in? %>
-          <strong><%= link_to current_user.name, user_path(current_user.id) %></strong> |
+          <strong><%= image_tag current_user.image_url(:thumb_i) %>
+            <%= link_to current_user.name, user_path(current_user.id) %></strong> |
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
       <% elsif !admin_signed_in? %>
           <%= link_to "アカウント作成", new_user_registration_path, :class => 'navbar-link' %> |

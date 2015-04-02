@@ -1,6 +1,11 @@
 <div class="main">
   <h2><%= @user.name + '_Mypage' %></h2>
 
+  　
+  <div>
+    <%= image_tag @user.image_url(:thumb) %>
+  </div>
+
   <div class="sidebar">
     <div>
       <h3>< Pickup ></h3>
@@ -10,7 +15,7 @@
           </li>
       <% end %>
       <h3>< New ></h3>
-      <% @articles_pn.each do |article| %>
+      <% @articles_new.each do |article| %>
           <li>
             <%= link_to article.title, article_path(article.id) %>
           </li>
@@ -19,13 +24,17 @@
   </div>
 
   <p>
-    <% if !(current_user == @user) %>
-        <% if Friendship.where(:to_user_id => @user.id).present? && Friendship.where(:from_user_id => current_user.id).present? %>
-            <%= link_to "unfollow", follow_destroy_user_path(@user.id), data: {confirm: "フォローを外しますか？"}, method: :delete %>
-        <% else %>
-            <%= link_to "follow", follow_user_path(@user.id), data: {confirm: "フォローしますか？"}, method: :follow %>
+    <% if user_signed_in? %>
+
+        <% if !(current_user == @user) %>
+            <% if Friendship.where(:to_user_id => @user.id).present? && Friendship.where(:from_user_id => current_user.id).present? %>
+                <%= link_to "unfollow", follow_destroy_user_path(@user.id), data: {confirm: "フォローを外しますか？"}, method: :delete %>
+            <% else %>
+                <%= link_to "follow", follow_user_path(@user.id), data: {confirm: "フォローしますか？"}, method: :follow %>
+            <% end %>
         <% end %>
     <% end %>
+
   </p>
 
   <p><%= link_to 'プロフィール編集', edit_user_registration_path %></p>
@@ -45,6 +54,8 @@
       <% @user.friends_of_from_user.each do |friend| %>
           <div><%= link_to friend.name, user_path(friend.id) %></div>
       <% end %>
+    </div>
+    <div>
       <strong>- Follower -</strong>
       <% @user.friends_of_to_user.each do |friend| %>
           <div><%= link_to friend.name, user_path(friend.id) %></div>
