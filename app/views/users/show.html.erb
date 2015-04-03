@@ -22,10 +22,10 @@
     <% if user_signed_in? %>
 
         <% if !(current_user == @user) %>
-            <% if Friendship.where(:to_user_id => @user.id).present? && Friendship.where(:from_user_id => current_user.id).present? %>
-                <%= link_to "unfollow", follow_destroy_user_path(@user.id), data: {confirm: "フォローを外しますか？"}, method: :delete %>
-            <% else %>
+            <% if follow?(@user) %>
                 <%= link_to "follow", follow_user_path(@user.id), data: {confirm: "フォローしますか？"}, method: :follow %>
+            <% else %>
+                <%= link_to "unfollow", follow_destroy_user_path(@user.id), data: {confirm: "フォローを外しますか？"}, method: :delete %>
             <% end %>
         <% end %>
     <% end %>

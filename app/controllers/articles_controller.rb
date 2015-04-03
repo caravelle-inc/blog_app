@@ -43,10 +43,8 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @favorite = FavoriteArticle.where(:article_id => "params[:id]")
-    @favorite.each do |f|
-      f.delete
-    end
+    @favorite = FavoriteArticle.find_by(article_id: params[:id])
+    @favorite.delete
     @article.delete
     redirect_to articles_path
   end
@@ -68,7 +66,7 @@ class ArticlesController < ApplicationController
   end
 
   def favorite_destroy
-    @favorite = FavoriteArticle.find_by(:article_id => params[:id]) && FavoriteArticle.find_by(:user_id => current_user.id)
+    @favorite = FavoriteArticle.find_by(article_id: params[:id], user_id: current_user.id)
     @favorite.delete
     redirect_to favorites_articles_path
   end
