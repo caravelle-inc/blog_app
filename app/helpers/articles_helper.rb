@@ -1,6 +1,6 @@
 module ArticlesHelper
 
   def favorite_article?(article)
-    FavoriteArticle.where(:article_id => article.id).present? && FavoriteArticle.where(:user_id => current_user.id).present?
+    FavoriteArticle.find_by(article_id: article.id, user_id: current_user.id).nil?
   end
 end

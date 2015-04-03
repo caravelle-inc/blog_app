@@ -35,10 +35,8 @@ class UsersController < ApplicationController
   end
 
   def follow_destroy
-    @follow = Friendship.where(:to_user_id => params[:id])
-    @follow.each do |a|
-      a.delete
-    end
+    @follow = Friendship.find_by(:to_user_id => params[:id])
+    @follow.delete
     redirect_to users_path
   end
 
