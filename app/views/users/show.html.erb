@@ -3,7 +3,9 @@
 
   　
   <div>
-    <%= image_tag @user.image_url(:thumb) %>
+    <%# if @user.image.present? %>
+        <%= image_tag @user.image_url(:thumb) %>
+    <%# end %>
   </div>
 
   <div class="sidebar">

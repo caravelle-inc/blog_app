@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+
     @articles_pn = Article.all
     @articles_new = Article.order('id DESC')
     @user_articles = User.find(params[:id]).article
