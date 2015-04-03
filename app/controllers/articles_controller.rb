@@ -85,7 +85,6 @@ class ArticlesController < ApplicationController
   end
 
   def set_articles_pick_new
-    @articles_pn = Article.all
     @articles_new = Article.order('id DESC')
   end
 

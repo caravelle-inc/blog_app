@@ -1,21 +1,8 @@
 <div class="main">
   <h2><%= @user.name + '_Mypage' %></h2>
 
-  　
-  <div>
-    <%# if @user.image.present? %>
-        <%= image_tag @user.image_url(:thumb) %>
-    <%# end %>
-  </div>
-
   <div class="sidebar">
     <div>
-      <h3>< Pickup ></h3>
-      <% @articles_pn.each do |article| %>
-          <li>
-            <%= link_to article.title, article_path(article.id) %>
-          </li>
-      <% end %>
       <h3>< New ></h3>
       <% @articles_new.each do |article| %>
           <li>
@@ -23,6 +10,12 @@
           </li>
       <% end %>
     </div>
+  </div>
+
+  <div>
+    <%# if @user.image.present? %>
+    <%= image_tag @user.image_url(:thumb) %>
+    <%# end %>
   </div>
 
   <p>
