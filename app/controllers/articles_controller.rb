@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only:[:show, :edit, :update, :destroy, :favorite]
-  before_action :set_articles_pick_new, only:[:index, :edit, :show, :new, :favorite, :favorite, :favorites]
+  before_action :set_articles_new, only:[:index, :edit, :show, :new, :favorite, :favorite, :favorites]
   # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite]
 
   def index
@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @comments = Comment.where(:article_id => @article.id)
   end
 
   def new
@@ -84,7 +85,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
-  def set_articles_pick_new
+  def set_articles_new
     @articles_new = Article.order('id DESC')
   end
 

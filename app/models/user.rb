@@ -16,4 +16,7 @@ class User < ActiveRecord::Base
     friends_of_from_user + friends_of_to_user
   end
 
+  #rails consoleでNameError: uninitialized constant User::ImageUploaderに対して
+  require 'carrierwave/orm/activerecord'
+
 end

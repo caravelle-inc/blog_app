@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     collection do
       get 'favorites'
     end
+
+    resources :comments
   end
 
 

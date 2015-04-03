@@ -15,9 +15,14 @@
   <div class="contents">
     <%#= render partial: "articles/article_list", locals: {articles: @articles} %>
     <% @articles.each do |article| %>
-        <li>
-          <p><%= link_to article.title, article_path(article.id) %></p>
-          <iframe width="420" height="315" src="<%= article.movie %>" frameborder="0" allowfullscreen></iframe>
+        <ul>
+          <div>
+            <% user = User.find(article.user_id) %>
+            <%= image_tag user.image_url(:thumb_i) %>
+            <%= link_to user.name, user_path(user.id) %>
+            <div><h3><%= link_to article.title, article_path(article.id) %></h3></div>
+          </div>
+          <iframe width="600" height="400" src="<%= article.movie %>" frameborder="0" allowfullscreen></iframe>
           <% if user_signed_in? %>
               <% if favorite_article?(article) %>
                   <%= button_to "お気に入り削除", favorite_destroy_article_path(article.id), method: :delete, data: {confirm: "削除していいですか？"} %>
@@ -25,7 +30,8 @@
                   <%= button_to "お気に入り", favorite_article_path(article.id), method: :favorite, data: {confirm: "お気に入りに追加しますか"} %>
               <% end %>
           <% end %>
-        </li>
+          <%= link_to "コメント",  new_article_comment_path(article.id) %>
+        </ul>
     <% end %>
   </div>
 </div>

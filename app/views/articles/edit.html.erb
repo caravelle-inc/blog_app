@@ -27,7 +27,7 @@
 
     <p>
       <%= f.label :content %><br>
-      <%= f.text_field :content %>
+      <%= f.text_area :content %>
     </p>
 
     <p>
@@ -36,7 +36,7 @@
 
 <% end %>
 
-<p><%= link_to "[Back]", articles_path %></p>
+<p><%= link_to "[Back]", user_path(@article.user_id) %></p>
 </div>
 
 </div>
