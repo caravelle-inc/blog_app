@@ -44,9 +44,14 @@ class ArticlesController < ApplicationController
 
   def destroy
     @favorite = FavoriteArticle.find_by(article_id: params[:id])
-    @favorite.delete
+    @favorite.delete if @favorite.present?
     @article.delete
-    redirect_to articles_path
+    if admin_signed_in?
+      redirect_to admins_path
+    else
+      redirect_to user_path(current_user)
+    end
+
   end
 
   def favorite

@@ -19,7 +19,7 @@
           <% @article = Article.find(a.article_id) %>
           <div><h3><%= link_to @article.title, article_path(@article.id) %></h3></div>
           <iframe width="600" height="400" src="<%= @article.movie %>" frameborder="0" allowfullscreen></iframe>
-          <%= button_to "削除", favorite_destroy_article_path(@article.id), method: :delete, data: {confirm: "削除していいですか？"} %>
+          <%= button_to "お気に入り削除", favorite_destroy_article_path(@article.id), method: :delete, data: {confirm: "お気に入りから削除しますか？"} %>
         </ul>
     <% end %>
   </div>

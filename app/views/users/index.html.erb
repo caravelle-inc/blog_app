@@ -17,19 +17,20 @@
     <div>
       <% @users.each do |a| %>
           <li>
-            <%= image_tag a.image_url(:thumb_i) %>
-            <%= link_to a.name, user_path(a.id) %>
-            <% if user_signed_in? %>
-
-                <% if !(current_user == a) %>
-                    <% if follow?(a) %>
-                        <%= link_to "follow", follow_user_path(a.id), data: {confirm: "フォローしますか？"}, method: :follow %>
-                    <% else %>
-                        <%= link_to "unfollow", follow_destroy_user_path(a.id), data: {confirm: "フォローを外しますか？"}, method: :delete %>
-                    <% end %>
-                <% end %>
-                </li>
-            <% end %>
+            <div class="article">
+              <%= image_tag a.image_url(:thumb_i) %>
+              <%= link_to a.name, user_path(a.id) %>
+              <% if user_signed_in? %>
+                  <% if !(current_user == a) %>
+                      <% if follow?(a) %>
+                          <%= link_to "follow", follow_user_path(a.id), data: {confirm: "フォローしますか？"}, method: :follow %>
+                      <% else %>
+                          <%= link_to "unfollow", follow_destroy_user_path(a.id), data: {confirm: "フォローを外しますか？"}, method: :delete %>
+                      <% end %>
+                  <% end %>
+                  </div>
+                  </li>
+              <% end %>
       <% end %>
     </div>
   </div>
