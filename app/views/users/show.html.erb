@@ -32,7 +32,9 @@
 
   </p>
 
+  <% if current_user == @user %>
   <p><%= link_to 'プロフィール編集', edit_user_registration_path %></p>
+      <% end %>
 
   <p><%= link_to "Artcle New", new_article_path %></p>
 
@@ -41,28 +43,31 @@
 
   <div class="contents">
 
-    <%#- if false -%>
 
-    <div>
+    <div><strong>- Follow -</strong></div>
+
+    <div class="user">
       <p id="notice"><%= notice %></p>
-      <strong>- Follow -</strong>
       <% @user.friends_of_from_user.each do |friend| %>
           <div><%= link_to friend.name, user_path(friend.id) %></div>
       <% end %>
     </div>
-    <div>
-      <strong>- Follower -</strong>
+
+
+    <div><strong>- Follower -</strong></div>
+
+    <div class="user">
       <% @user.friends_of_to_user.each do |friend| %>
           <div><%= link_to friend.name, user_path(friend.id) %></div>
       <% end %>
     </div>
 
-    <%#- end -%>
-    <div>
-      <h3>< My articles ></h3>
-      <%#= render partial: "articles/article_list", locals: {articles: @articles} %>
-      <% @user_articles.each do |article| %>
-          <li>
+
+    <div><h3>< My articles ></h3></div>
+
+    <% @user_articles.each do |article| %>
+        <div class="user">
+          <td>
             <%= link_to article.title, article_path(article.id) %>
             <% if user_signed_in? %>
                 <% if favorite_article?(article) %>
@@ -71,12 +76,16 @@
                     <%= button_to "お気に入り削除", favorite_destroy_article_path(article.id), method: :delete, data: {confirm: "削除していいですか？"} %>
                 <% end %>
                 <% if article_owner?(article) %>
-                    <%= link_to "[編集]", edit_article_path(article.id) %>
+                    <%= button_to "編集", edit_article_path(article.id), method: :get %>
                     <%= button_to "削除", article_path(article.id), method: :delete, data: {confirm: "削除していいですか？"} %>
                 <% end %>
             <% end %>
-          </li>
-      <% end %>
-    </div>
+          </td>
+        </div>
+
+    <% end %>
+
   </div>
+
+
 </div>

@@ -16,21 +16,23 @@
   <div class="contents">
     <div>
       <% @users.each do |a| %>
-          <li>
-            <div class="article">
-              <%= image_tag a.image_url(:thumb_i) %>
-              <%= link_to a.name, user_path(a.id) %>
+          <table>
+            <tr>
+            <div class="user">
+              <td><%= image_tag a.image_url(:thumb_i) %></td>
+              <td><%= link_to a.name, user_path(a.id) %></td>
               <% if user_signed_in? %>
                   <% if !(current_user == a) %>
                       <% if follow?(a) %>
-                          <%= link_to "follow", follow_user_path(a.id), data: {confirm: "フォローしますか？"}, method: :follow %>
+                          <td><%= button_to "follow", follow_user_path(a.id), data: {confirm: "フォローしますか？"}, method: :follow %></td>
                       <% else %>
-                          <%= link_to "unfollow", follow_destroy_user_path(a.id), data: {confirm: "フォローを外しますか？"}, method: :delete %>
+                          <td><%= button_to "unfollow", follow_destroy_user_path(a.id), data: {confirm: "フォローを外しますか？"}, method: :delete %></td>
                       <% end %>
                   <% end %>
                   </div>
-                  </li>
               <% end %>
+            </tr>
+          </table>
       <% end %>
     </div>
   </div>

@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only:[:show, :edit, :update, :destroy, :favorite]
-  before_action :set_articles_new, only:[:index, :edit, :show, :new, :favorite, :favorite, :favorites]
+  before_action :set_articles_new
   # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite]
 
   def index
