@@ -43,8 +43,9 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @favorite = FavoriteArticle.find_by(article_id: params[:id])
-    @favorite.delete if @favorite.present?
+    # @favorite = FavoriteArticle.find_by(article_id: params[:id])
+    # @favorite.delete if @favorite.present?
+    @article.favorite_articles.delete
     @article.delete
     if admin_signed_in?
       redirect_to admins_path
@@ -87,7 +88,7 @@ class ArticlesController < ApplicationController
   end
 
   def set_articles_new
-    @articles_new = Article.order('id DESC')
+    @articles_new = Article.order('id DESC').limit(10)
   end
 
 end

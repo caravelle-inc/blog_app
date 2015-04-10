@@ -19,15 +19,19 @@
           <table>
             <tr>
             <div class="user">
-              <td><%= image_tag a.image_url(:thumb_i) %></td>
-              <td><%= link_to a.name, user_path(a.id) %></td>
+              <div><td><%= image_tag a.image_url(:thumb_i) %></td></div>
+              <div><td><%= link_to a.name, user_path(a.id) %></td></div>
               <% if user_signed_in? %>
                   <% if !(current_user == a) %>
+                      <div>
+                        <td>
                       <% if follow?(a) %>
                           <td><%= button_to "follow", follow_user_path(a.id), data: {confirm: "フォローしますか？"}, method: :follow %></td>
                       <% else %>
                           <td><%= button_to "unfollow", follow_destroy_user_path(a.id), data: {confirm: "フォローを外しますか？"}, method: :delete %></td>
                       <% end %>
+                        </td>
+                      </div>
                   <% end %>
                   </div>
               <% end %>

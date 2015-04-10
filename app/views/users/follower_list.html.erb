@@ -1,0 +1,25 @@
+<div class="main">
+
+  <div class="contents">
+
+    <% @user.friends_of_to_user.each do |friend| %>
+
+        <table>
+          <tr>
+            <div class="user">
+              <div>
+                <td><%= image_tag friend.image_url(:thumb_i) %></td>
+              </div>
+              <div>
+                <td><%= link_to friend.name, user_path(friend.id) %></td>
+              </div>
+            </div>
+    <% end %>
+    </tr>
+    </table>
+
+  </div>
+
+  <div><%= link_to "[Back]", user_path(@user.id) %></div>
+
+</div>

@@ -17,7 +17,7 @@
     <% @articles.each do |article| %>
         <ul>
           <div class="article">
-            <% user = User.find(article.user_id) %>
+            <% user = article.user %>
             <%= image_tag user.image_url(:thumb_i) %>
             <%= link_to user.name, user_path(user.id) %>
             <div><h3><%= link_to article.title, article_path(article.id) %></h3></div>
@@ -29,7 +29,7 @@
                   <%= button_to "お気に入り削除", favorite_destroy_article_path(article.id), method: :delete, data: {confirm: "削除していいですか？"} %>
               <% end %>
           <% end %>
-          <div><%= link_to "コメント",  new_article_comment_path(article.id) %></div>
+          <div><%= link_to "コメント",  new_article_comment_path(article.id) %> <%= article.comments.count %></div>
           </div>
         </ul>
     <% end %>

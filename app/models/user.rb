@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :friendships_of_to_user, :class_name => 'Friendship', :foreign_key => 'to_user_id', :dependent => :destroy
   has_many :friends_of_from_user, :through => :friendships_of_from_user, :source => 'to_user'
   has_many :friends_of_to_user, :through => :friendships_of_to_user, :source => 'from_user'
-  has_many :article
+  has_many :articles
 
   mount_uploader :image, ImageUploader
 

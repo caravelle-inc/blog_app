@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     member do
       post 'follow'
       delete 'follow_destroy'
+      get 'follow_list'
+      get 'follower_list'
+      get 'my_articles'
     end
   end
 

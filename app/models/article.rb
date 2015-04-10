@@ -1,6 +1,7 @@
 class Article < ActiveRecord::Base
   belongs_to :user
   has_many :comments
+  has_many :favorite_articles
 
   validates :title,
             presence: { message: "タイトルを入力してください" },

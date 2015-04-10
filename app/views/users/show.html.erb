@@ -32,60 +32,29 @@
 
   </p>
 
-  <% if current_user == @user %>
-  <p><%= link_to 'プロフィール編集', edit_user_registration_path %></p>
-      <% end %>
-
-  <p><%= link_to "Artcle New", new_article_path %></p>
-
-  <p><%= link_to "Favorite", favorites_articles_path if user_signed_in? %></p>
-
 
   <div class="contents">
 
-
-    <div><strong>- Follow -</strong></div>
-
-    <div class="user">
-      <p id="notice"><%= notice %></p>
-      <% @user.friends_of_from_user.each do |friend| %>
-          <div><%= link_to friend.name, user_path(friend.id) %></div>
-      <% end %>
-    </div>
-
-
-    <div><strong>- Follower -</strong></div>
-
-    <div class="user">
-      <% @user.friends_of_to_user.each do |friend| %>
-          <div><%= link_to friend.name, user_path(friend.id) %></div>
-      <% end %>
-    </div>
-
-
-    <div><h3>< My articles ></h3></div>
-
-    <% @user_articles.each do |article| %>
-        <div class="user">
-          <td>
-            <%= link_to article.title, article_path(article.id) %>
-            <% if user_signed_in? %>
-                <% if favorite_article?(article) %>
-                    <%= button_to "お気に入り", favorite_article_path(article.id), method: :favorite, data: {confirm: "お気に入りに追加しますか"} %>
-                <% else %>
-                    <%= button_to "お気に入り削除", favorite_destroy_article_path(article.id), method: :delete, data: {confirm: "削除していいですか？"} %>
-                <% end %>
-                <% if article_owner?(article) %>
-                    <%= button_to "編集", edit_article_path(article.id), method: :get %>
-                    <%= button_to "削除", article_path(article.id), method: :delete, data: {confirm: "削除していいですか？"} %>
-                <% end %>
-            <% end %>
-          </td>
-        </div>
-
+    <% if current_user == @user %>
+        <p><h4><%= link_to 'プロフィール編集', edit_user_registration_path %></h4></p>
     <% end %>
 
+    <p><h4><%= link_to "Artcle New", new_article_path %></h4></p>
+
+    <p><h4><%= link_to "Favorite", favorites_articles_path if user_signed_in? %></h4></p>
+
+    <div><h4><%= link_to "Follow", follow_list_user_path(@user.id) %></h4></div>
+
+    <div><%= @user.friends_of_from_user.count %></div>
+
+    <div><h4><%= link_to "Follower", follower_list_user_path(@user.id) %></h4></div>
+
+    <div><%= @user.friends_of_to_user.count %></div>
+
+    <div><h4><%= link_to "My articles", my_articles_user_path(@user.id) %></h4></div>
+    <div><%= @user_articles.count %></div>
+
   </div>
-
-
+  </div>
 </div>
+
