@@ -9,7 +9,28 @@ class Article < ActiveRecord::Base
 
   validates :content,
             presence: { message: "コメントを入力してください" },
-            length: { in: 10..20 , message: "10文字以上20文字以内で入力してください" }
+            length: { in: 5..20 , message: "10文字以上20文字以内で入力してください" }
+
+  validates :movie,
+            presence: { message: "youtubeのURLを入れてください" }
+            # if: :youtube_url?
+
+  # validate :check_url
+
+  # def youtube_url?
+  #   movie.include?("https://www.youtube.com")
+  # end
+
+
+  # private
+  #
+  # def check_url
+  #   if
+  #
+  # end
 
 end
+
+
+
 

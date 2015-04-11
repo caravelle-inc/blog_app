@@ -1,37 +1,41 @@
 <div class="main">
 
-  <h1>Comment New</h1>
+  <%- if false -%>
 
-  <div class="sidebar">
-    <div>
-      <h3>< New ></h3>
-      <% @articles_new.each do |a| %>
-          <li>
-            <%= link_to a.title, article_path(a.id) %>
-          </li>
-      <% end %>
-    </div>
-  </div>
+      <h1>Comment New</h1>
 
-
-  <div class="contents">
-
-    <%= form_for ([@article, @comment]) do |f| %>
-
-        <p>
-          <%= f.label :comment %><br>
-          <%= f.text_area :comment %>
-          <% if @comment.errors.any? %>
-              <%= @comment.errors.messages[:comment][0] %>
+      <div class="sidebar">
+        <div>
+          <h3>< New ></h3>
+          <% @articles_new.each do |a| %>
+              <li>
+                <%= link_to a.title, article_path(a.id) %>
+              </li>
           <% end %>
-        </p>
+        </div>
+      </div>
 
-        <p>
-          <%= f.submit %>
-        </p>
 
-    <% end %>
+      <div class="contents">
 
-    <p><%= link_to "[Back]", article_path(@article.id) %></p>
-  </div>
-</div>
+        <%= form_for ([@article, @comment]) do |f| %>
+
+            <p>
+              <%= f.label :comment %><br>
+              <%= f.text_area :comment %>
+              <% if @comment.errors.any? %>
+                  <%= @comment.errors.messages[:comment][0] %>
+              <% end %>
+            </p>
+
+            <p>
+              <%= f.submit %>
+            </p>
+
+        <% end %>
+
+        <p><%= link_to "[Back]", article_path(@article.id) %></p>
+      </div>
+      </div>
+
+  <%- end -%>

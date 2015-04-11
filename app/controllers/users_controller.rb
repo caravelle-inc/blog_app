@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @articles_new = Article.order('id DESC')
-    @user_articles = User.find(params[:id]).articles
+    @user_articles = User.find(params[:id]).articles.order('id DESC')
   end
 
   def destroy

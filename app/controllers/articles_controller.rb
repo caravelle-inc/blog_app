@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     @comments = Comment.where(:article_id => @article.id)
   end
 
@@ -19,15 +20,30 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.user_id = current_user.id
 
-    url_id = @article.movie.gsub('https://www.youtube.com/watch?v=','')
-    url_emb = "https://www.youtube.com/embed/"
-    @article.movie  = url_emb + url_id
+    if @article.movie.include?('https://www.youtube.com/')
+      url_id = @article.movie.gsub('https://www.youtube.com/watch?v=', '')
+      base_url = "https://www.youtube.com/embed/"
+      @article.movie = base_url + url_id
 
-    if @article.save
-      redirect_to articles_path
+      if @article.save
+        redirect_to articles_path
+      else
+        render 'new'
+      end
+      # @article.save ? redirect_to articles_path : render 'new'
+
     else
-      render 'new'
+      @article.movie = ""
+
+      if @article.save
+        redirect_to articles_path
+      else
+        render 'new'
+      end
+      # @article.save ? redirect_to articles_path : render 'new'
+
     end
+
   end
 
   def edit

@@ -11,7 +11,6 @@
       <% end %>
     </div>
   </div>
-
   <div class="contents">
     <%#= render partial: "articles/article_list", locals: {articles: @articles} %>
     <% @articles.each do |article| %>
@@ -29,7 +28,7 @@
                   <%= button_to "お気に入り削除", favorite_destroy_article_path(article.id), method: :delete, data: {confirm: "削除していいですか？"} %>
               <% end %>
           <% end %>
-          <div><%= link_to "コメント",  new_article_comment_path(article.id) %> <%= article.comments.count %></div>
+          <div><%= link_to "コメント", article_path(article.id) %> <%= article.comments.count %> 件</div>
           </div>
         </ul>
     <% end %>

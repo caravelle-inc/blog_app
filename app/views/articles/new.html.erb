@@ -34,6 +34,9 @@
         <p>
           <%= f.label :URL %><br>
           <%= f.url_field :movie %>
+          <% if @article.errors.any? %>
+              <%= @article.errors.messages[:movie][0]%>
+          <% end %>
         </p>
 
         <p>

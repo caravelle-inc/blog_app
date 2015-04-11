@@ -23,7 +23,24 @@
             <%= button_to "お気に入り削除", favorite_destroy_article_path(@article.id), method: :delete, data: {confirm: "削除していいですか？"} %>
         <% end %>
     <% end %>
-    <div><%= @article.content %></div>
+    <div class="content"><%= @article.content %></div>
+
+    <%= form_for ([@article, @comment]) do |f| %>
+
+        <p>
+          <%= f.label :comment %><br>
+          <%= f.text_area :comment %>
+          <% if @comment.errors.any? %>
+              <%= @comment.errors.messages[:comment][0] %>
+          <% end %>
+        </p>
+
+        <p>
+          <%= f.submit :'コメントする' %>
+        </p>
+
+    <% end %>
+
     <h3>- コメント -</h3>
     <% @comments.each do |comment| %>
         <ul>
