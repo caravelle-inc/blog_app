@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
     collection do
       get 'favorites'
+      get "article_search"
     end
 
     resources :comments
@@ -44,6 +45,12 @@ Rails.application.routes.draw do
   }
 
   resources :admins, :only => [:index]
+
+  resources :searches, :only => [:index] do
+    collection do
+      get "search"
+    end
+  end
 
 
 #deviseのログアウトをlogin_user,admin_userを分けようと試みたが一旦保留#

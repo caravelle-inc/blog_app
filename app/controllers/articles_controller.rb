@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only:[:show, :edit, :update, :destroy, :favorite]
+  before_action :set_article, only:[:show, :edit, :update, :destroy, :favorite, :article_search]
   before_action :set_articles_new
   # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite]
 
@@ -10,6 +10,7 @@ class ArticlesController < ApplicationController
   def show
     @comment = Comment.new
     @comments = Comment.where(:article_id => @article.id)
+    @result = []
   end
 
   def new
@@ -91,6 +92,22 @@ class ArticlesController < ApplicationController
     @favorite = FavoriteArticle.find_by(article_id: params[:id], user_id: current_user.id)
     @favorite.delete
     redirect_to favorites_articles_path
+  end
+
+  def article_search
+    config = YAML.load_file( 'config.yml' )
+    gracenote_conf = config["gracenote"]
+    spec = {:clientID => gracenote_conf["clientID"], :clientTag => gracenote_conf["clientTag"],
+            :userID => gracenote_conf["userID"]}
+    gracenote = Gracenote.new(spec)
+    # begin
+    @result = gracenote.findTrack(params[:artist], params[:album_title], params[:track_title], "0")
+    p @result
+    @article = Article.find(params[:id])
+    @comment = Comment.new
+    @comments = Comment.where(:article_id => @article.id)
+
+    render 'show'
   end
 
   private
