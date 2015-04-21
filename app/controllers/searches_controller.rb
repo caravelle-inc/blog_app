@@ -20,17 +20,13 @@ class SearchesController < ApplicationController
     spec = {:clientID => gracenote_conf["clientID"], :clientTag => gracenote_conf["clientTag"],
             :userID => gracenote_conf["userID"]}
     gracenote = Gracenote.new(spec)
-    # begin
-    if @result = gracenote.findTrack(params[:artist], params[:album_title], params[:track_title], "0")
-      render 'index'
-    else
+
+    begin
+    @result = gracenote.findTrack(params[:artist], params[:album_title], params[:track_title], "0")
+    render 'index'
+    rescue
       render 'index'
     end
-    p @result
-
-    # rescue
-    #   render 'index'
-    # end
 
   end
 
@@ -41,8 +37,3 @@ class SearchesController < ApplicationController
   end
 end
 
-
-# spec = {:clientID => "5563648", :clientTag => "83EEF93A6CC7506A5E2FA67D98A56C1B",
-#         :userID => "27115191738128502-AA7E50383650DED190B74E9CF9FBF8E2"}
-# gracenote = Gracenote.new(spec)
-# @result = gracenote.findTrack("ゆらゆら帝国", "", "美しい", "0")

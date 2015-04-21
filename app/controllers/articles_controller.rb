@@ -32,7 +32,6 @@ class ArticlesController < ApplicationController
       else
         render 'new'
       end
-      # @article.save ? redirect_to articles_path : render 'new'
 
     else
       @article.movie = ""
