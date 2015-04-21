@@ -39,7 +39,7 @@
     /*background-color: #FFF0E4;*/
 }
 
-.main
+#main
 {
     margin-top: 80px;
     margin-left: 215px;
@@ -49,14 +49,14 @@
     /*background-color: #FFF0E4;*/
 }
 
-.contents
+#contents
 {
     margin: 30px;
     /*float: left;*/
     /*display: table;*/
 }
 
-.sidebar
+#sidebar
 {
     float: right;
     margin-right: 280px;
@@ -64,7 +64,8 @@
 
 .article
 {
-    padding-bottom: 100px;
+    padding-bottom: 50px;
+    padding-top: 50px;
 }
 
 .user

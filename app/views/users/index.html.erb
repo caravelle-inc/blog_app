@@ -1,8 +1,8 @@
-<div class="main">
+<div id="main">
 
   <h2>User一覧</h2>
 
-  <div class="sidebar">
+  <div id="sidebar">
     <div>
       <h3>< New ></h3>
       <% @articles_new.each do |a| %>
@@ -28,7 +28,7 @@
                 <% if user_signed_in? %>
                     <% if !(current_user == a) %>
                         <td>
-                          <div vertical-align="middle">
+                          <div>
                             <% if follow?(a) %>
                                 <%= button_to "follow", follow_user_path(a.id), data: {confirm: "フォローしますか？"}, method: :follow %>
                             <% else %>

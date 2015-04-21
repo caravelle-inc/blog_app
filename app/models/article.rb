@@ -15,6 +15,10 @@ class Article < ActiveRecord::Base
             presence: { message: "youtubeのURLを入れてください" }
             # if: :youtube_url?
 
+
+  paginates_per 1  # 1ページあたり5項目表示
+
+
   # validate :check_url
 
   # def youtube_url?

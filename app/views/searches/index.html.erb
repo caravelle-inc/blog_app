@@ -1,6 +1,6 @@
-<div class="main">
+<div id="main">
 
-  <div class="sidebar">
+  <div id="sidebar">
     <div>
       <h3>< New ></h3>
       <% @articles_new.each do |a| %>
@@ -13,7 +13,7 @@
 
   <h2> gracenote </h2>
 
-  <div class="contents">
+  <div id="contents">
 
     <div>
       <%= form_tag({:action => "search"}, {:method => "get"}) do %>

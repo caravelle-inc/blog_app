@@ -1,10 +1,10 @@
-<div class="main">
+<div id="main">
 
-  <div class="contents">
+  <div id="contents">
 
 
     <% @user_articles.each do |article| %>
-        <div class="user">
+        <div id="user">
           <!--<td>-->
           <div><h4><%= link_to article.title, article_path(article.id) %></h4></div>
           <iframe width="300" height="200" src="<%= article.movie %>" frameborder="0" allowfullscreen></iframe>

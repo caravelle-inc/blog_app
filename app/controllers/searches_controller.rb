@@ -21,9 +21,13 @@ class SearchesController < ApplicationController
             :userID => gracenote_conf["userID"]}
     gracenote = Gracenote.new(spec)
     # begin
-    @result = gracenote.findTrack(params[:artist], params[:album_title], params[:track_title], "0")
+    if @result = gracenote.findTrack(params[:artist], params[:album_title], params[:track_title], "0")
+      render 'index'
+    else
+      render 'index'
+    end
     p @result
-    render 'index'
+
     # rescue
     #   render 'index'
     # end

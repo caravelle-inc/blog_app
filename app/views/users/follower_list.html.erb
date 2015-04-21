@@ -1,12 +1,12 @@
-<div class="main">
+<div id="main">
 
-  <div class="contents">
+  <div id="contents">
 
     <% @user.friends_of_to_user.each do |friend| %>
 
         <table>
           <tr>
-            <div class="user">
+            <div id="user">
               <div>
                 <td><%= image_tag friend.image_url(:thumb_i) %></td>
               </div>

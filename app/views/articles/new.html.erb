@@ -1,7 +1,7 @@
-<div class="main">
+<div id="main">
   <h2>Article New</h2>
 
-  <div class="sidebar">
+  <div id="sidebar">
     <div>
       <h3>< New ></h3>
       <% @articles_new.each do |a| %>
@@ -11,7 +11,7 @@
       <% end %>
     </div>
   </div>
-  <div class="contents">
+  <div id="contents">
 
     <%= form_for @article do |f| %>
 
@@ -32,7 +32,7 @@
         </p>
 
         <p>
-          <%= f.label :URL %><br>
+          <%= f.label :youtube_url %><br>
           <%= f.url_field :movie %>
           <% if @article.errors.any? %>
               <%= @article.errors.messages[:movie][0]%>

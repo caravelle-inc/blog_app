@@ -4,7 +4,8 @@ class ArticlesController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite]
 
   def index
-    @articles = Article.all.order('id DESC')
+    # @articles = Article.all.order('id DESC')
+    @articles = Article.all.order('id DESC').page(params[:page])
   end
 
   def show
