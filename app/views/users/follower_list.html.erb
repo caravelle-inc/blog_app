@@ -1,6 +1,4 @@
-<div id="main">
 
-  <div id="contents">
 
     <% @user.friends_of_to_user.each do |friend| %>
 
@@ -18,8 +16,6 @@
     </tr>
     </table>
 
-  </div>
 
   <div><%= link_to "[Back]", user_path(@user.id) %></div>
 
-</div>

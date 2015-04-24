@@ -40,11 +40,9 @@ class UsersController < ApplicationController
   end
 
   def follow_list
-
   end
 
   def follower_list
-
   end
 
   def my_articles

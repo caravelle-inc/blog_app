@@ -1,27 +1,17 @@
-<div id="main">
-  <h2>お気に入り</h2>
+<h2>お気に入り</h2>
 
-  <div id="sidebar">
-    <div>
-      <h3>< New ></h3>
-      <% @articles_new.each do |a| %>
-          <li>
-            <%= link_to a.title, article_path(a.id) %>
-          </li>
-      <% end %>
-    </div>
-  </div>
-
-  <div id="contents">
-
-    <% @favorites.each do |a| %>
-        <ul>
-          <% @article = Article.find(a.article_id) %>
-          <div><h3><%= link_to @article.title, article_path(@article.id) %></h3></div>
-          <iframe width="600" height="400" src="<%= @article.movie %>" frameborder="0" allowfullscreen></iframe>
-          <%= button_to "お気に入り削除", favorite_destroy_article_path(@article.id), method: :delete, data: {confirm: "お気に入りから削除しますか？"} %>
-        </ul>
-    <% end %>
-  </div>
-</div>
+<% @favorites.each do |a| %>
+    <ul>
+      <div class="article">
+        <div class="content">
+          <div class="content-sub">
+            <% @article = Article.find(a.article_id) %>
+            <div><h3><%= link_to @article.title, article_path(@article.id) %></h3></div>
+            <iframe width="500" height="350" src="<%= @article.movie %>" frameborder="0" allowfullscreen></iframe>
+            <%= button_to "お気に入り削除", favorite_destroy_article_path(@article.id), method: :delete, data: {confirm: "お気に入りから削除しますか？"} %>
+          </div>
+        </div>
+      </div>
+    </ul>
+<% end %>
 

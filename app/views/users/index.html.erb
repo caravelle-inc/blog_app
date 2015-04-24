@@ -1,47 +1,22 @@
-<div id="main">
+<h2>User一覧</h2>
 
-  <h2>User一覧</h2>
+<table class="table table-hover">
+  <% @users.each do |a| %>
+      <% if !(current_user == a) %>
 
-  <div id="sidebar">
-    <div>
-      <h3>< New ></h3>
-      <% @articles_new.each do |a| %>
-          <li>
-            <%= link_to a.title, article_path(a.id) %>
-          </li>
+          <tr>
+            <td><%= image_tag a.image_url(:thumb_i) %></td>
+            <td width="300px"><%= link_to a.name, user_path(a.id) %></td>
+            <% if user_signed_in? %>
+                <td>
+                  <% if follow?(a) %>
+                      <%= button_to "follow", follow_user_path(a.id), data: {confirm: "フォローしますか？"}, method: :follow %>
+                  <% else %>
+                      <%= button_to "unfollow", follow_destroy_user_path(a.id), data: {confirm: "フォローを外しますか？"}, method: :delete %>
+                  <% end %>
+                </td>
+            <% end %>
       <% end %>
-    </div>
-  </div>
-
-  <div class="contents">
-    <div>
-      <% @users.each do |a| %>
-          <div class="table">
-          <table>
-            <tr>
-                <div>
-                  <td><%= image_tag a.image_url(:thumb_i) %></td>
-                </div>
-                <div>
-                  <td width="300px"><%= link_to a.name, user_path(a.id) %></td>
-                </div>
-                <% if user_signed_in? %>
-                    <% if !(current_user == a) %>
-                        <td>
-                          <div>
-                            <% if follow?(a) %>
-                                <%= button_to "follow", follow_user_path(a.id), data: {confirm: "フォローしますか？"}, method: :follow %>
-                            <% else %>
-                                <%= button_to "unfollow", follow_destroy_user_path(a.id), data: {confirm: "フォローを外しますか？"}, method: :delete %>
-                            <% end %>
-                          </div>
-                        </td>
-                    <% end %>
-                <% end %>
-                </tr>
-          </table>
-          </div>
-      <% end %>
-    </div>
-  </div>
-</div>
+      </tr>
+  <% end %>
+</table>

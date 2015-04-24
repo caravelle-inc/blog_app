@@ -1,0 +1,11 @@
+<h3> New </h3>
+
+<ul class="nav nav-sidebar">
+  <div>
+    <% @articles_new.each do |article| %>
+        <li>
+          <%= link_to article.title, article_path(article.id) %>
+        </li>
+    <% end %>
+  </div>
+</ul>

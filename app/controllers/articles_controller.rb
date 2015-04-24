@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only:[:show, :edit, :update, :destroy, :favorite, :article_search]
-  before_action :set_articles_new
   # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite]
 
   def index
@@ -42,7 +41,6 @@ class ArticlesController < ApplicationController
         render 'new'
       end
       # @article.save ? redirect_to articles_path : render 'new'
-
     end
 
   end
@@ -120,8 +118,5 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
-  def set_articles_new
-    @articles_new = Article.order('id DESC').limit(10)
-  end
 
 end

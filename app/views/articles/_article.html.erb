@@ -1,23 +1,29 @@
 <% @articles.each do |article| %>
     <ul>
       <div class="article">
-        <% user = article.user %>
-        <%= image_tag user.image_url(:thumb_i) %>
-        <%= link_to user.name, user_path(user.id) %>
+        <div class="content">
+          <div class="content-sub">
+            <% user = article.user %>
+            <%= image_tag user.image_url(:thumb_i) %>
+            <%= link_to user.name, user_path(user.id) %>
 
-        <div><h3><%= link_to article.title, article_path(article.id) %></h3></div>
+            <div><h3><%= link_to article.title, article_path(article.id) %></h3></div>
+          </div>
+          <iframe width="500" height="350" src="<%= article.movie %>" frameborder="0" allowfullscreen></iframe>
 
-        <iframe width="600" height="400" src="<%= article.movie %>" frameborder="0" allowfullscreen></iframe>
+          <div class="content-sub">
 
-        <% if user_signed_in? %>
-            <% if favorite_article?(article) %>
-                <%= button_to "お気に入り", favorite_article_path(article.id), method: :favorite, data: {confirm: "お気に入りに追加しますか"} %>
-            <% else %>
-                <%= button_to "お気に入り削除", favorite_destroy_article_path(article.id), method: :delete, data: {confirm: "削除していいですか？"} %>
+            <% if user_signed_in? %>
+                <% if favorite_article?(article) %>
+                    <%= button_to "お気に入り", favorite_article_path(article.id), method: :favorite, data: {confirm: "お気に入りに追加しますか"} %>
+                <% else %>
+                    <%= button_to "お気に入り削除", favorite_destroy_article_path(article.id), method: :delete, data: {confirm: "削除していいですか？"} %>
+                <% end %>
             <% end %>
-        <% end %>
 
-        <div><%= link_to "コメント", article_path(article.id) %> <%= article.comments.count %> 件</div>
+            <div><%= link_to "コメント", article_path(article.id) %> <%= article.comments.count %> 件</div>
+          </div>
+        </div>
 
       </div>
     </ul>

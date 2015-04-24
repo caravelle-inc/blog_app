@@ -1,17 +1,6 @@
-<div id="main">
   <h2>Article New</h2>
 
-  <div id="sidebar">
-    <div>
-      <h3>< New ></h3>
-      <% @articles_new.each do |a| %>
-          <li>
-            <%= link_to a.title, article_path(a.id) %>
-          </li>
-      <% end %>
-    </div>
-  </div>
-  <div id="contents">
+
 
     <%= form_for @article do |f| %>
 
@@ -45,5 +34,3 @@
 
     <% end %>
 
-  </div>
-</div>

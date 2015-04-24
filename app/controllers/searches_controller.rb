@@ -1,7 +1,5 @@
 class SearchesController < ApplicationController
 
-
-  before_action :set_articles_new
   require "gracenote"
   require 'yaml'
 
@@ -30,10 +28,5 @@ class SearchesController < ApplicationController
 
   end
 
-  private
-
-  def set_articles_new
-    @articles_new = Article.order('id DESC').limit(10)
-  end
 end
 

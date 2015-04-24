@@ -1,20 +1,8 @@
-<div id="main">
-
-<h2>Article Edit</h2>
-
-<div id="sidebar">
-  <div>
-    <h3>< New ></h3>
-    <% @articles_new.each do |a| %>
-        <li>
-          <%= link_to a.title, article_path(a.id) %>
-        </li>
-    <% end %>
-  </div>
-</div>
 
 
-<div id="contents">
+<h2>編集</h2>
+
+
 <%= form_for @article do |f| %>
 
     <p>
@@ -40,6 +28,3 @@
 <% end %>
 
 <p><%= link_to "[Back]", user_path(@article.user_id) %></p>
-</div>
-
-</div>

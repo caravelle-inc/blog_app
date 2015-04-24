@@ -1,24 +1,9 @@
-<div id="main">
   <h2>Article</h2>
 
-  <div id="sidebar">
-    <div>
-      <h3>< New ></h3>
-      <% @articles_new.each do |article| %>
-          <li>
-            <%= link_to article.title, article_path(article.id) %>
-          </li>
-      <% end %>
-    </div>
-  </div>
-
   <div id="contents">
-    <%#= render 'articles/article' %>
     <%= render partial: "article", locals: { aritcles: @articles } %>
-    <!--= render partial: "contents/index", locals: {contents: @user.contents}-->
   </div>
 
   <%= paginate @articles %>
 
-</div>
 
