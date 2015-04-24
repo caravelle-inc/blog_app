@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dcebb521-6e37-42ad-a574-7fad479bf4de" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/articles/show.html.erb" afterPath="$PROJECT_DIR$/app/views/articles/show.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="blog_app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,11 +46,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="show.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/articles/show.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8343868" vertical-offset="45" max-vertical-offset="2025">
+            <state vertical-scroll-proportion="-27.5" vertical-offset="45" max-vertical-offset="2025">
               <caret line="47" column="14" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.31755915" vertical-offset="0" max-vertical-offset="803">
+              <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -60,7 +71,12 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-18.125" vertical-offset="0" max-vertical-offset="525">
               <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1429876932000" expanded="true" signature="155:439" placeholder="..." />
+                <marker date="1429876932000" expanded="true" signature="193:418" placeholder="..." />
+                <marker date="1429876932000" expanded="true" signature="573:929" placeholder="..." />
+                <marker date="1429876932000" expanded="true" signature="615:908" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -98,7 +114,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/admins/registrations/new.html.erb" />
         <option value="$PROJECT_DIR$/../board_plus/app/assets/javascripts/application.js" />
         <option value="$PROJECT_DIR$/../board_plus/app/assets/stylesheets/application.css" />
         <option value="$PROJECT_DIR$/../board_plus/app/views/layouts/application.html.erb" />
@@ -149,6 +164,7 @@
         <option value="$PROJECT_DIR$/app/helpers/application_helper.rb" />
         <option value="$PROJECT_DIR$/app/controllers/comments_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/articles/show.html.erb" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -532,14 +548,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/friendship.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3652968" vertical-offset="0" max-vertical-offset="657">
@@ -920,7 +928,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.125" vertical-offset="0" max-vertical-offset="525">
           <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1429876932000" expanded="true" signature="155:439" placeholder="..." />
+            <marker date="1429876932000" expanded="true" signature="193:418" placeholder="..." />
+            <marker date="1429876932000" expanded="true" signature="573:929" placeholder="..." />
+            <marker date="1429876932000" expanded="true" signature="615:908" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -934,8 +947,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/articles/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8343868" vertical-offset="45" max-vertical-offset="2025">
+        <state vertical-scroll-proportion="-27.5" vertical-offset="45" max-vertical-offset="2025">
           <caret line="47" column="14" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31755915" vertical-offset="0" max-vertical-offset="803">
+          <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
           <folding />
         </state>
       </provider>
