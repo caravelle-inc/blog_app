@@ -15,6 +15,7 @@
 /log/*.log
 /tmp
 
-# 
+#
 database.yml
 development.rb
+.idea/workspace.xml
