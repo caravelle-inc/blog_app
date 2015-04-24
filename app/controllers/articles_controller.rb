@@ -3,7 +3,6 @@ class ArticlesController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite]
 
   def index
-    # @articles = Article.all.order('id DESC')
     @articles = Article.all.order('id DESC').page(params[:page])
   end
 
@@ -40,7 +39,6 @@ class ArticlesController < ApplicationController
       else
         render 'new'
       end
-      # @article.save ? redirect_to articles_path : render 'new'
     end
 
   end
@@ -82,7 +80,6 @@ class ArticlesController < ApplicationController
   end
 
   def favorites
-    # @user = current_user.id
     @favorites = FavoriteArticle.where(:user_id => current_user.id)
   end
 

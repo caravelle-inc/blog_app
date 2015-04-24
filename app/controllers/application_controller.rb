@@ -3,8 +3,6 @@ class ApplicationController < ActionController::Base
 # For APIs, you may want to use :null_session instead.
   before_action :set_articles_new
 
-
-
   private
 
   def set_articles_new
