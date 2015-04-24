@@ -23,7 +23,7 @@ class SearchesController < ApplicationController
     @result = gracenote.findTrack(params[:artist], params[:album_title], params[:track_title], "0")
     render 'index'
     rescue
-      render 'index'
+      render 'rescue'
     end
 
   end
