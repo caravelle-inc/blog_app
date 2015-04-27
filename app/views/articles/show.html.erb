@@ -13,14 +13,13 @@
       <div class="content-sub">
       <% if user_signed_in? %>
               <% if favorite_article?(@article) %>
-                  <%= button_to "お気に入り", favorite_article_path(@article.id), method: :favorite, data: {confirm: "お気に入りに追加しますか"} %>
+                  <%= button_to "お気に入り", favorite_article_path(@article.id), method: :favorite, data: {confirm: "お気に入りに追加しますか"}, class: 'btn btn-primary btn-xs' %>
               <% else %>
-                  <%= button_to "お気に入り削除", favorite_destroy_article_path(@article.id), method: :delete, data: {confirm: "削除していいですか？"} %>
+                  <%= button_to "お気に入り削除", favorite_destroy_article_path(@article.id), method: :delete, data: {confirm: "削除していいですか？"}, class: 'btn btn-danger btn-xs' %>
               <% end %>
               <div class="content"><%= @article.content %></div>
 
               <%= form_for ([@article, @comment]) do |f| %>
-
                   <p>
                     <%= f.label :comment %><br>
                     <%= f.text_area :comment %>
@@ -30,7 +29,7 @@
                   </p>
 
                   <p>
-                    <%= f.submit :'コメントする' %>
+                    <%= f.submit :'コメントする', :class => "btn btn-primary" %>
                   </p>
 
               <% end %>
@@ -46,7 +45,7 @@
                 <%# end %>
                 <%= comment.comment %>
                 <% if comment_owner?(comment) %>
-                    <%= link_to "削除", article_comment_path(comment.article_id, comment.id), data: {confirm: "本当に良いですか？"}, method: :delete %>
+                    <%= link_to "削除", article_comment_path(comment.article_id, comment.id), data: {confirm: "本当に良いですか？"}, method: :delete, class: 'btn btn-danger btn-xs' %>
                 <% end %>
               </ul>
           <% end %>
@@ -70,7 +69,7 @@
 
       <p><%= text_field_tag "track_title", params[:track_title] %></p>
 
-      <p><%= submit_tag "検索" %></p>
+      <p><%= submit_tag "検索", :class => "btn btn-primary" %></p>
   <% end %>
 
 
@@ -132,3 +131,4 @@
   <br>
 
 </ul>
+

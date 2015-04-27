@@ -9,7 +9,7 @@
       <tr>
         <td><%= image_tag a.image_url(:thumb_i) %>
         <%= link_to a.name, user_path(a.id) %></td>
-        <td class="text-left"><%= link_to "削除", user_path(a.id), data: {confirm: "本当に良いですか？"}, method: :delete %></td>
+        <td class="text-left"><%= link_to "削除", user_path(a.id), data: {confirm: "本当に良いですか？"}, method: :delete, class: 'btn btn-danger btn-xs' %></td>
       </tr>
   <% end %>
 </table>
@@ -22,7 +22,7 @@
         <td><%= link_to a.title, article_path(a.id) %></td>
         <td><% @user = User.find(a.user_id) %></td>
         <td><%= link_to @user.name, user_path(@user.id) %></td>
-        <td><%= link_to "削除", article_path(a.id), method: :delete, data: {confirm: "削除していいですか？"} %></td>
+        <td><%= link_to "削除", article_path(a.id), method: :delete, data: {confirm: "削除していいですか？"}, class: 'btn btn-danger btn-xs' %></td>
       </tr>
   <% end %>
 </table>
