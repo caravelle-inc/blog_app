@@ -23,10 +23,11 @@
     background-color: #ffffff;
     border-radius: 8px;
     width: 500px;
+    margin-top: 60px;
 }
 
 body {
-    padding-top: 60px;
+    padding-top: 80px;
     background-color: #faf9f4;
 }
 
@@ -60,3 +61,7 @@ table {
 /*.image {*/
     /*border-radius: 8px;*/
 /*}*/
+
+.header-menu {
+    padding: 10px;
+}

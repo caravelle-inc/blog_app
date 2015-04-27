@@ -1,12 +1,17 @@
 <ul>
-  <div class="article">
-    <div class="content">
+    <div class="article">
+      <div class="content">
       <div class="content-sub">
-        <h2><%= @article.title %></h2>
+        <% user = @article.user %>
+        <%= image_tag user.image_url(:thumb_i) %>
+        <%= link_to user.name, user_path(user.id) %>
+        <div><h2><%= link_to @article.title, article_path(@article.id) %></h2></div>
+      </div>
 
-        <div>
           <iframe width="500" height="350" src="<%= @article.movie %>" frameborder="0" allowfullscreen></iframe>
-          <% if user_signed_in? %>
+
+      <div class="content-sub">
+      <% if user_signed_in? %>
               <% if favorite_article?(@article) %>
                   <%= button_to "お気に入り", favorite_article_path(@article.id), method: :favorite, data: {confirm: "お気に入りに追加しますか"} %>
               <% else %>
@@ -41,12 +46,11 @@
                 <%# end %>
                 <%= comment.comment %>
                 <% if comment_owner?(comment) %>
-                <%= link_to "削除", article_comment_path(comment.article_id, comment.id), data: {confirm: "本当に良いですか？"}, method: :delete %>
+                    <%= link_to "削除", article_comment_path(comment.article_id, comment.id), data: {confirm: "本当に良いですか？"}, method: :delete %>
                 <% end %>
               </ul>
           <% end %>
         </div>
-      </div>
     </div>
   </div>
 

@@ -5,8 +5,8 @@
       <% if !(current_user == a) %>
 
           <tr>
-            <td><%= image_tag a.image_url(:thumb_i) %></td>
-            <td width="300px"><%= link_to a.name, user_path(a.id) %></td>
+            <td><%= image_tag a.image_url(:thumb_i) %>
+            <%= link_to a.name, user_path(a.id) %></td>
             <% if user_signed_in? %>
                 <td>
                   <% if follow?(a) %>
