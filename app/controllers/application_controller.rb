@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def set_articles_new
-    @articles_new = Article.order('created_at DESC').limit(10)
+    @recent_articles = Article.order('created_at DESC').limit(10)
   end
 
 end

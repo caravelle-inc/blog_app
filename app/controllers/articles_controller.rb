@@ -20,10 +20,10 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.user_id = current_user.id
 
-    if @article.youtube_url.include?('https://www.youtube.com/')
-      url_id = @article.youtube_url.gsub('https://www.youtube.com/watch?v=', '')
+    if @article..include?('https://www.youtube.com/')
+      url_id = @article.movie.gsub('https://www.youtube.com/watch?v=', '')
       base_url = "https://www.youtube.com/embed/"
-      @article.youtube_url = base_url + url_id
+      @article.movie = base_url + url_id
 
       if @article.save
         redirect_to articles_path
@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
       end
 
     else
-      @article.youtube_url = ""
+      @article.movie = ""
 
       if @article.save
         redirect_to articles_path
@@ -113,7 +113,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params[:article].permit(:title, :content, :user_id, :youtube_url)
+    params[:article].permit(:title, :content, :user_id, :movie)
   end
 
   def set_article
