@@ -19,15 +19,13 @@
     <% end %>
   </p>
 
-
     <% if current_user == @user %>
         <p><h4><%= link_to 'プロフィール編集', edit_user_registration_path %></h4></p>
     <% end %>
 
-
   <table class="table table-hover">
     <tr>
-      <td><h4><%= link_to "Favorite", favorites_articles_path if user_signed_in? %></h4></td><td><%= @user.favorite_article.count %></td>
+      <td><h4><%= link_to "Favorite", favorites_articles_path(@user) %></h4></td><td><%= @user.favorite_article.count %></td>
     </tr>
     <tr>
       <td><h4><%= link_to "Follow", follow_list_friendships_path(@user) %></h4></td><td><%= @user.follow.count %></td>

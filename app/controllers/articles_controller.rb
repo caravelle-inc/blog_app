@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only:[:show, :edit, :update, :destroy, :favorite, :article_search]
-  # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite]
+  # before_action :set_user, only:[:show, :edit, :update, :destroy, :favorite, :article_search]
 
   def index
     @articles = Article.all.order('created_at DESC').page(params[:page])
@@ -56,10 +56,6 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    # @favorite = FavoriteArticle.find_by(article_id: params[:id])
-    # @favorite.delete if @favorite.present?
-    # @article.favorite_articles.delete
-    # @article.delete
     @article.destroy
     if admin_signed_in?
       redirect_to admins_path
@@ -81,7 +77,8 @@ class ArticlesController < ApplicationController
   end
 
   def favorites
-    @favorites = FavoriteArticle.where(:user_id => current_user.id)
+    @user_id = User.find(params[:format])
+    @favorites = FavoriteArticle.where(:user_id => @user_id)
   end
 
   def favorite_destroy
@@ -105,6 +102,10 @@ class ArticlesController < ApplicationController
   def set_article
     @article = Article.find(params[:id])
   end
+
+  # def set_user
+  #   @user = User.find(params[:format])
+  # end
 
 
 end

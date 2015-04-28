@@ -14,15 +14,6 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    # @user.delete
-    # @follow_from = Friendship.where(:from_user_id => params[:id])
-    # @follow_to = Friendship.where(:to_user_id => params[:id])
-    # if @follow_from.present?
-    #   @follow_from.delete
-    # end
-    # if @follow_to.present?
-    #   @follow_to.delete
-    # end
     redirect_to admins_path
   end
 
