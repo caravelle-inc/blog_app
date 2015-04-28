@@ -4,24 +4,25 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @articles_new = Article.order('id DESC')
+    @articles_new = Article.order('created_at DESC')
   end
 
   def show
-    @articles_new = Article.order('id DESC')
-    @user_articles = User.find(params[:id]).articles.order('id DESC')
+    @articles_new = Article.order('created_at DESC')
+    @user_articles = @user.articles.order('created_at DESC')
   end
 
   def destroy
-    @user.delete
-    @follow_from = Friendship.where(:from_user_id => params[:id])
-    @follow_to = Friendship.where(:to_user_id => params[:id])
-    if @follow_from.present?
-      @follow_from.delete
-    end
-    if @follow_to.present?
-      @follow_to.delete
-    end
+    @user.destroy
+    # @user.delete
+    # @follow_from = Friendship.where(:from_user_id => params[:id])
+    # @follow_to = Friendship.where(:to_user_id => params[:id])
+    # if @follow_from.present?
+    #   @follow_from.delete
+    # end
+    # if @follow_to.present?
+    #   @follow_to.delete
+    # end
     redirect_to admins_path
   end
 
@@ -45,9 +46,9 @@ class UsersController < ApplicationController
   def follower_list
   end
 
-  def my_articles
-    @user_articles = @user.articles
-  end
+  # def my_articles
+  #   @user_articles = @user.articles
+  # end
 
   private
 

@@ -23,6 +23,8 @@
                   <p>
                     <%= f.label :comment %><br>
                     <%= f.text_area :comment %>
+                    <%= f.hidden_field :user_id, :value => current_user.id %>
+                    <%= f.hidden_field :article_id, :value => @article.id %>
                     <% if @comment.errors.any? %>
                         <%= @comment.errors.messages[:comment][0] %>
                     <% end %>

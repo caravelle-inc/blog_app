@@ -58,8 +58,9 @@ class ArticlesController < ApplicationController
   def destroy
     # @favorite = FavoriteArticle.find_by(article_id: params[:id])
     # @favorite.delete if @favorite.present?
-    @article.favorite_articles.delete
-    @article.delete
+    # @article.favorite_articles.delete
+    # @article.delete
+    @article.destroy
     if admin_signed_in?
       redirect_to admins_path
     else
@@ -97,12 +98,16 @@ class ArticlesController < ApplicationController
     gracenote = Gracenote.new(spec)
     # begin
     @result = gracenote.findTrack(params[:artist], params[:album_title], params[:track_title], "0")
-    p @result
     @article = Article.find(params[:id])
     @comment = Comment.new
     @comments = Comment.where(:article_id => @article.id)
 
     render 'show'
+  end
+
+  def my_articles
+    @user = User.find(params[:format])
+    @user_articles = @user.articles
   end
 
   private

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     collection do
       get 'favorites'
       get "article_search"
+      get 'my_articles'
     end
 
     resources :comments
@@ -30,7 +31,6 @@ Rails.application.routes.draw do
       delete 'follow_destroy'
       get 'follow_list'
       get 'follower_list'
-      get 'my_articles'
     end
   end
 

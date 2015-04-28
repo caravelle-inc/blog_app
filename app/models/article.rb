@@ -1,7 +1,7 @@
 class Article < ActiveRecord::Base
   belongs_to :user
-  has_many :comments
-  has_many :favorite_articles
+  has_many :comments, :dependent => :destroy
+  has_many :favorite_articles, :dependent => :destroy
 
   validates :title,
             presence: { message: "タイトルを入力してください" },
@@ -13,25 +13,9 @@ class Article < ActiveRecord::Base
 
   validates :movie,
             presence: { message: "youtubeのURLを入れてください" }
-            # if: :youtube_url?
 
+  paginates_per 1  # 1ページあたりの表示件数
 
-  paginates_per 1  # 1ページあたり5項目表示
-
-
-  # validate :check_url
-
-  # def youtube_url?
-  #   movie.include?("https://www.youtube.com")
-  # end
-
-
-  # private
-  #
-  # def check_url
-  #   if
-  #
-  # end
 
 end
 

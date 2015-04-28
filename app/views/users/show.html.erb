@@ -31,13 +31,13 @@
 
     <div><h4><%= link_to "Follow", follow_list_user_path(@user.id) %></h4></div>
 
-    <div><%= @user.friends_of_from_user.count %></div>
+    <div><%= @user.follow.count %></div>
 
     <div><h4><%= link_to "Follower", follower_list_user_path(@user.id) %></h4></div>
 
-    <div><%= @user.friends_of_to_user.count %></div>
+    <div><%= @user.follower.count %></div>
 
-    <div><h4><%= link_to "My articles", my_articles_user_path(@user.id) %></h4></div>
+    <div><h4><%= link_to "My articles", my_articles_articles_path(@user) %></h4></div>
     <div><%= @user_articles.count %></div>
 
 
