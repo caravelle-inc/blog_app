@@ -11,7 +11,7 @@ class Article < ActiveRecord::Base
             presence: { message: "コメントを入力してください" },
             length: { in: 5..20 , message: "10文字以上20文字以内で入力してください" }
 
-  validates :movie,
+  validates :youtube_url,
             presence: { message: "youtubeのURLを入れてください" }
 
   paginates_per 1  # 1ページあたりの表示件数

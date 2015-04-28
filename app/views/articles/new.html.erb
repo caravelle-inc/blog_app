@@ -22,9 +22,9 @@
 
         <p>
           <%= f.label :youtube_url %><br>
-          <%= f.url_field :movie %>
+          <%= f.url_field :youtube_url %>
           <% if @article.errors.any? %>
-              <%= @article.errors.messages[:movie][0]%>
+              <%= @article.errors.messages[:youtube_url][0]%>
           <% end %>
         </p>
 

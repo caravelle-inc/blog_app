@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :favorite]
 
   def index
-    @articles = Article.all.order('id DESC').page(params[:page])
+    @articles = Article.all.order('created_at DESC').page(params[:page])
   end
 
   def show
@@ -20,10 +20,10 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.user_id = current_user.id
 
-    if @article.movie.include?('https://www.youtube.com/')
-      url_id = @article.movie.gsub('https://www.youtube.com/watch?v=', '')
+    if @article.youtube_url.include?('https://www.youtube.com/')
+      url_id = @article.youtube_url.gsub('https://www.youtube.com/watch?v=', '')
       base_url = "https://www.youtube.com/embed/"
-      @article.movie = base_url + url_id
+      @article.youtube_url = base_url + url_id
 
       if @article.save
         redirect_to articles_path
@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
       end
 
     else
-      @article.movie = ""
+      @article.youtube_url = ""
 
       if @article.save
         redirect_to articles_path
@@ -113,7 +113,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params[:article].permit(:title, :content, :user_id, :movie)
+    params[:article].permit(:title, :content, :user_id, :youtube_url)
   end
 
   def set_article

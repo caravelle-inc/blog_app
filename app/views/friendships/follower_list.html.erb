@@ -1,0 +1,14 @@
+<table class="table table-hover">
+  <% @user.follower.each do |a| %>
+      <tr>
+        <td><%= image_tag a.image_url(:thumb_i) %>
+          <%= link_to a.name, user_path(a.id) %></td>
+      </tr>
+  <% end %>
+</table>
+
+
+<div><%= link_to "[Back]", user_path(@user.id) %></div>
+
+
+

@@ -1,4 +1,4 @@
-  <h2><%= @user.name + '_Mypage' %></h2>
+  <h2><%= @user.name %></h2>
 
   <div>
     <%# if @user.image.present? %>
@@ -17,7 +17,6 @@
             <% end %>
         <% end %>
     <% end %>
-
   </p>
 
 
@@ -29,11 +28,11 @@
 
     <p><h4><%= link_to "Favorite", favorites_articles_path if user_signed_in? %></h4></p>
 
-    <div><h4><%= link_to "Follow", follow_list_user_path(@user.id) %></h4></div>
+    <div><h4><%= link_to "Follow", follow_list_friendships_path(@user) %></h4></div>
 
     <div><%= @user.follow.count %></div>
 
-    <div><h4><%= link_to "Follower", follower_list_user_path(@user.id) %></h4></div>
+    <div><h4><%= link_to "Follower", follower_list_friendships_path(@user) %></h4></div>
 
     <div><%= @user.follower.count %></div>
 

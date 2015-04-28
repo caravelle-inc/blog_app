@@ -34,6 +34,18 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :friendships do
+    member do
+      post 'follow'
+      delete 'follow_destroy'
+    end
+    collection do
+      get 'follow_list'
+      get 'follower_list'
+    end
+  end
+
+
 
   # devise_scope :user do
   #   get '/users/sign_out' => 'users/sessions#destroy'

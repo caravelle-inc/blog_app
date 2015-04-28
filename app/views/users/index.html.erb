@@ -6,17 +6,17 @@
 
           <tr>
             <td><%= image_tag a.image_url(:thumb_i) %>
-            <%= link_to a.name, user_path(a.id) %></td>
+              <%= link_to a.name, user_path(a.id) %></td>
             <% if user_signed_in? %>
                 <td>
                   <% if follow?(a) %>
-                      <%= button_to "follow", follow_user_path(a.id), data: {confirm: "フォローしますか？"}, method: :follow, class: 'btn btn-primary btn-xs' %>
+                      <%= button_to "follow", follow_friendship_path(a.id), data: {confirm: "フォローしますか？"}, method: :follow, class: 'btn btn-primary btn-xs' %>
                   <% else %>
-                      <%= button_to "unfollow", follow_destroy_user_path(a.id), data: {confirm: "フォローを外しますか？"}, method: :delete, class: 'btn btn-danger btn-xs' %>
+                      <%= button_to "unfollow", follow_destroy_friendship_path(a.id), data: {confirm: "フォローを外しますか？"}, method: :delete, class: 'btn btn-danger btn-xs' %>
                   <% end %>
                 </td>
             <% end %>
+          </tr>
       <% end %>
-      </tr>
   <% end %>
 </table>

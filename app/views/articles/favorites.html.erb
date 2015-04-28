@@ -17,7 +17,7 @@
             </div>
           </div>
 
-          <iframe width="500" height="350" src="<%= @article.movie %>" frameborder="0" allowfullscreen></iframe>
+          <iframe width="500" height="350" src="<%= @article.youtube_url %>" frameborder="0" allowfullscreen></iframe>
 
             <div class="content-sub">
               <%= button_to "お気に入り削除", favorite_destroy_article_path(@article.id), method: :delete, data: {confirm: "お気に入りから削除しますか？"}, class: 'btn btn-danger btn-xs' %>
