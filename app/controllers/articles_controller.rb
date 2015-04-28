@@ -20,10 +20,10 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.user_id = current_user.id
 
-    if @article..include?('https://www.youtube.com/')
-      url_id = @article.movie.gsub('https://www.youtube.com/watch?v=', '')
+    if @article.youtube_url.include?('https://www.youtube.com/')
+      url_id = @article.youtube_url.gsub('https://www.youtube.com/watch?v=', '')
       base_url = "https://www.youtube.com/embed/"
-      @article.movie = base_url + url_id
+      @article.youtube_url = base_url + url_id
 
       if @article.save
         redirect_to articles_path
@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
       end
 
     else
-      @article.movie = ""
+      @article.youtube_url = ""
 
       if @article.save
         redirect_to articles_path
@@ -90,20 +90,6 @@ class ArticlesController < ApplicationController
     redirect_to favorites_articles_path
   end
 
-  def article_search
-    config = YAML.load_file( 'config.yml' )
-    gracenote_conf = config["gracenote"]
-    spec = {:clientID => gracenote_conf["clientID"], :clientTag => gracenote_conf["clientTag"],
-            :userID => gracenote_conf["userID"]}
-    gracenote = Gracenote.new(spec)
-    # begin
-    @result = gracenote.findTrack(params[:artist], params[:album_title], params[:track_title], "0")
-    @article = Article.find(params[:id])
-    @comment = Comment.new
-    @comments = Comment.where(:article_id => @article.id)
-
-    render 'show'
-  end
 
   def my_articles
     @user = User.find(params[:format])
@@ -113,7 +99,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params[:article].permit(:title, :content, :user_id, :movie)
+    params[:article].permit(:title, :content, :user_id, :youtube_url)
   end
 
   def set_article
