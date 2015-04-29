@@ -9,11 +9,10 @@
       <tr>
         <td><%= image_tag a.image_url(:thumb_i) %>
         <%= link_to a.name, user_path(a.id) %></td>
-        <td class="text-left"><%= link_to "削除", user_path(a.id), data: {confirm: "本当に良いですか？"}, method: :delete, class: 'btn btn-danger btn-xs' %></td>
+        <td><%= link_to "削除", user_path(a.id), data: {confirm: "本当に良いですか？"}, method: :delete, class: 'btn btn-danger btn-xs' %></td>
       </tr>
   <% end %>
 </table>
-<%#= link_to "アカウント作成", new_user_registration_path, :class => 'navbar-link' %>
 
 <h3>Article 一覧</h3>
 <table class="table table-hover">

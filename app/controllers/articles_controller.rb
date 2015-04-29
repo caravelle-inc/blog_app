@@ -67,11 +67,8 @@ class ArticlesController < ApplicationController
     @favorite = FavoriteArticle.new
     @favorite.user_id = current_user.id
     @favorite.article_id = @article.id
-    if @favorite.save
-      redirect_to articles_path
-    else
-      redirect_to article_path(@article.id)
-    end
+    @favorite.save
+    redirect_to(:back)
   end
 
   def favorites
@@ -86,7 +83,7 @@ class ArticlesController < ApplicationController
   def favorite_destroy
     @favorite = FavoriteArticle.find_by(article_id: params[:id], user_id: current_user.id)
     @favorite.delete
-    redirect_to favorites_articles_path
+    redirect_to(:back)
   end
 
 

@@ -6,9 +6,9 @@
             <% user = article.user %>
             <%= image_tag user.image_url(:thumb_i) %>
             <%= link_to user.name, user_path(user.id) %>
-
             <div><h3><%= link_to article.title, article_path(article.id) %></h3></div>
           </div>
+
           <iframe width="500" height="350" src="<%= article.youtube_url %>" frameborder="0" allowfullscreen></iframe>
 
           <div class="content-sub">

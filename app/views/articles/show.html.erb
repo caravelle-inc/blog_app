@@ -1,6 +1,6 @@
 <ul>
-    <div class="article">
-      <div class="content">
+  <div class="article">
+    <div class="content">
       <div class="content-sub">
         <% user = @article.user %>
         <%= image_tag user.image_url(:thumb_i) %>
@@ -8,50 +8,49 @@
         <div><h2><%= link_to @article.title, article_path(@article.id) %></h2></div>
       </div>
 
-          <iframe width="500" height="350" src="<%= @article.youtube_url %>" frameborder="0" allowfullscreen></iframe>
+      <iframe width="500" height="350" src="<%= @article.youtube_url %>" frameborder="0" allowfullscreen></iframe>
 
       <div class="content-sub">
-      <% if user_signed_in? %>
-              <% if favorite_article?(@article) %>
-                  <%= button_to "お気に入り", favorite_article_path(@article.id), method: :favorite, data: {confirm: "お気に入りに追加しますか"}, class: 'btn btn-primary btn-xs' %>
-              <% else %>
-                  <%= button_to "お気に入り削除", favorite_destroy_article_path(@article.id), method: :delete, data: {confirm: "削除していいですか？"}, class: 'btn btn-danger btn-xs' %>
+        <% if user_signed_in? %>
+            <% if favorite_article?(@article) %>
+                <%= button_to "お気に入り", favorite_article_path(@article.id), method: :favorite, data: {confirm: "お気に入りに追加しますか"}, class: 'btn btn-primary btn-xs' %>
+            <% else %>
+                <%= button_to "お気に入り削除", favorite_destroy_article_path(@article.id), method: :delete, data: {confirm: "削除していいですか？"}, class: 'btn btn-danger btn-xs' %>
+            <% end %>
+            <div class="content"><%= @article.content %></div>
+
+            <%= form_for ([@article, @comment]) do |f| %>
+                <p>
+                  <%= f.label :comment %><br>
+                  <%= f.text_area :comment %>
+                  <%= f.hidden_field :user_id, :value => current_user.id %>
+                  <%= f.hidden_field :article_id, :value => @article.id %>
+                  <% if @comment.errors.any? %>
+                      <%= @comment.errors.messages[:comment][0] %>
+                  <% end %>
+                </p>
+
+                <p>
+                  <%= f.submit :'コメントする', :class => "btn btn-primary" %>
+                </p>
+
+            <% end %>
+        <% end %>
+
+
+        <% @comments.each do |comment| %>
+            <ul>
+              <% user = User.find(comment.user_id) %>
+              <%= image_tag user.image_url(:thumb_i) %>
+              <%= link_to user.name, user_path(user.id) %>
+              <%= comment.comment %>
+              <% if comment_owner?(comment) %>
+                  <%= link_to "削除", article_comment_path(comment.article_id, comment.id), data: {confirm: "本当に良いですか？"}, method: :delete, class: 'btn btn-danger btn-xs' %>
               <% end %>
-              <div class="content"><%= @article.content %></div>
+            </ul>
+        <% end %>
+      </div>
 
-              <%= form_for ([@article, @comment]) do |f| %>
-                  <p>
-                    <%= f.label :comment %><br>
-                    <%= f.text_area :comment %>
-                    <%= f.hidden_field :user_id, :value => current_user.id %>
-                    <%= f.hidden_field :article_id, :value => @article.id %>
-                    <% if @comment.errors.any? %>
-                        <%= @comment.errors.messages[:comment][0] %>
-                    <% end %>
-                  </p>
-
-                  <p>
-                    <%= f.submit :'コメントする', :class => "btn btn-primary" %>
-                  </p>
-
-              <% end %>
-          <% end %>
-
-
-          <% @comments.each do |comment| %>
-              <ul>
-                <%# if comment.user_id.present? %>
-                <% user = User.find(comment.user_id) %>
-                <%= image_tag user.image_url(:thumb_i) %>
-                <%= link_to user.name, user_path(user.id) %>
-                <%# end %>
-                <%= comment.comment %>
-                <% if comment_owner?(comment) %>
-                    <%= link_to "削除", article_comment_path(comment.article_id, comment.id), data: {confirm: "本当に良いですか？"}, method: :delete, class: 'btn btn-danger btn-xs' %>
-                <% end %>
-              </ul>
-          <% end %>
-        </div>
     </div>
   </div>
 </ul>
