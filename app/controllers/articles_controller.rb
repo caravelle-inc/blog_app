@@ -55,12 +55,12 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    if admin_signed_in?
-      redirect_to admins_path
-    else
-      redirect_to user_path(current_user)
-    end
-
+    # if admin_signed_in?
+    #   redirect_to admins_path
+    # else
+    #   redirect_to user_path(current_user)
+    # end
+    redirect_to(:back)
   end
 
   def favorite

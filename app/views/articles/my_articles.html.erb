@@ -1,3 +1,5 @@
+<h2>My Article</h2>
+
 <% @user_articles.each do |article| %>
     <ul>
       <div class="article">
@@ -19,7 +21,8 @@
                 <% else %>
                     <%= button_to "お気に入り削除", favorite_destroy_article_path(article.id), method: :delete, data: {confirm: "削除していいですか？"}, class: 'btn btn-danger btn-xs' %>
                 <% end %>
-            <% end %>
+                <%= link_to "削除", article_path(article.id), method: :delete, data: {confirm: "削除していいですか？"}, class: 'btn btn-danger btn-xs' %>
+          <% end %>
 
             <div><%= link_to "コメント", article_path(article.id) %> <%= article.comments.count %> 件</div>
           </div>

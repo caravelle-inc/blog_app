@@ -11,3 +11,4 @@ class UserMailer < ActionMailer::Base
     mail(:subject => "登録完了のお知らせ", to: email)
   end
 end
+
