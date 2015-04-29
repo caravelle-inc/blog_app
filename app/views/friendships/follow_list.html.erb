@@ -5,6 +5,13 @@
       <tr>
         <td><%= image_tag a.image_url(:thumb_i) %>
           <%= link_to a.name, user_path(a.id) %></td>
+
+        <% if user_signed_in? %>
+            <td>
+                  <%= button_to "unfollow", follow_destroy_friendship_path(a.id), data: {confirm: "フォローを外しますか？"}, method: :delete, class: 'btn btn-danger btn-xs' %>
+            </td>
+        <% end %>
+
       </tr>
   <% end %>
 </table>
