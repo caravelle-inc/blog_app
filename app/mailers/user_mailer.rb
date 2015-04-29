@@ -5,9 +5,9 @@ class UserMailer < ActionMailer::Base
   #
   #   en.user_mailer.registration_confirmation.subject
   #
-  def registration_confirmation
+  def registration_confirmation(email)
     @greeting = "登録完了しました！"
 
-    mail to: "m220274@gmail.com"
+    mail(:subject => "登録完了のお知らせ", to: email)
   end
 end
