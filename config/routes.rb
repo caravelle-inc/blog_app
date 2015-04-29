@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
     collection do
       get 'favorites'
+      get 'my_favorites'
       get "article_search"
       get 'my_articles'
     end

@@ -1,8 +1,9 @@
 class FriendshipsController < ApplicationController
 
-  before_action :set_user
+  before_action :set_user, only: [:follow_list, :follower_list]
 
   def follow
+    @user = User.find(params[:id])
     @follow = Friendship.new
     @follow.from_user_id = current_user.id
     @follow.to_user_id = @user.id

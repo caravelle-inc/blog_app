@@ -6,18 +6,18 @@
     <%# end %>
   </div>
 
-  <p>
+  <div>
     <% if user_signed_in? %>
 
         <% if !(current_user == @user) %>
             <% if follow?(@user) %>
-                <%= link_to "follow", follow_user_path(@user.id), data: {confirm: "フォローしますか？"}, method: :follow %>
+                <%= button_to "follow", follow_friendship_path(@user.id), data: {confirm: "フォローしますか？"}, method: :follow, class: 'btn btn-primary btn-xs' %>
             <% else %>
-                <%= link_to "unfollow", follow_destroy_user_path(@user.id), data: {confirm: "フォローを外しますか？"}, method: :delete %>
+                <%= button_to "unfollow", follow_destroy_friendship_path(@user.id), data: {confirm: "フォローを外しますか？"}, method: :delete, class: 'btn btn-danger btn-xs' %>
             <% end %>
         <% end %>
     <% end %>
-  </p>
+  </div>
 
     <% if current_user == @user %>
         <p><h4><%= link_to 'プロフィール編集', edit_user_registration_path %></h4></p>
@@ -25,16 +25,16 @@
 
   <table class="table table-hover">
     <tr>
-      <td><h4><%= link_to "Favorite", favorites_articles_path(@user) %></h4></td><td><%= @user.favorite_article.count %></td>
+      <td><h4><%= link_to "Favorite", my_favorites_articles_path(@user.id) %></h4></td><td><%= @user.favorite_article.count %></td>
     </tr>
     <tr>
-      <td><h4><%= link_to "Follow", follow_list_friendships_path(@user) %></h4></td><td><%= @user.follow.count %></td>
+      <td><h4><%= link_to "Follow", follow_list_friendships_path(@user.id) %></h4></td><td><%= @user.follow.count %></td>
     </tr>
     <tr>
-      <td><h4><%= link_to "Follower", follower_list_friendships_path(@user) %></h4></td><td><%= @user.follower.count %></td>
+      <td><h4><%= link_to "Follower", follower_list_friendships_path(@user.id) %></h4></td><td><%= @user.follower.count %></td>
     </tr>
     <tr>
-      <td><h4><%= link_to "My articles", my_articles_articles_path(@user) %></h4></td><td><%= @user_articles.count %></td>
+      <td><h4><%= link_to "My articles", my_articles_articles_path(@user.id) %></h4></td><td><%= @user_articles.count %></td>
     </tr>
   </table>
 

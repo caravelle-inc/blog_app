@@ -4,11 +4,7 @@ class SearchesController < ApplicationController
   require 'yaml'
 
   def index
-
     @result = []
-    # p @result
-    # redirect_to searches_path
-
   end
 
   def search

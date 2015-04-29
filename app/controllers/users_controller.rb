@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:show, :destroy, :follow, :follow_list, :follower_list]
+  before_action :set_user, only: [:show, :destroy]
 
   def index
     @users = User.all

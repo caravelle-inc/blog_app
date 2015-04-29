@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only:[:show, :edit, :update, :destroy, :favorite, :article_search]
-  # before_action :set_user, only:[:show, :edit, :update, :destroy, :favorite, :article_search]
 
   def index
     @articles = Article.all.order('created_at DESC').page(params[:page])
@@ -9,7 +8,6 @@ class ArticlesController < ApplicationController
   def show
     @comment = Comment.new
     @comments = Comment.where(:article_id => @article.id)
-    @result = []
   end
 
   def new
@@ -77,8 +75,12 @@ class ArticlesController < ApplicationController
   end
 
   def favorites
-    @user_id = User.find(params[:format])
-    @favorites = FavoriteArticle.where(:user_id => @user_id)
+    @favorites = FavoriteArticle.where(:user_id => current_user.id)
+  end
+
+  def my_favorites
+    @user = User.find(params[:format])
+    @my_favorites = FavoriteArticle.where(:user_id => @user.id)
   end
 
   def favorite_destroy
@@ -90,7 +92,7 @@ class ArticlesController < ApplicationController
 
   def my_articles
     @user = User.find(params[:format])
-    @user_articles = @user.articles
+    @user_articles = @user.articles.order('created_at DESC')
   end
 
   private
@@ -102,10 +104,6 @@ class ArticlesController < ApplicationController
   def set_article
     @article = Article.find(params[:id])
   end
-
-  # def set_user
-  #   @user = User.find(params[:format])
-  # end
 
 
 end
