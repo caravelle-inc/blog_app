@@ -24,7 +24,7 @@
 
   <table class="table table-hover">
     <tr>
-      <td><h4><%= link_to "Favorite", my_favorites_articles_path(@user.id) %></h4></td><td><%= @user.favorite_article.count %></td>
+      <td><h4><%= link_to "Favorite", favorite_path(@user.id) %></h4></td><td><%= @user.favorite_article.count %></td>
     </tr>
     <tr>
       <td><h4><%= link_to "Follow", follow_list_friendships_path(@user.id) %></h4></td><td><%= @user.follow.count %></td>

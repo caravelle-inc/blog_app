@@ -42,6 +42,9 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    if @article.user_id != current_user.id
+      redirect_to user_path(@article.user_id)
+    end
 
   end
 
@@ -55,34 +58,6 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    # if admin_signed_in?
-    #   redirect_to admins_path
-    # else
-    #   redirect_to user_path(current_user)
-    # end
-    redirect_to(:back)
-  end
-
-  def favorite
-    @favorite = FavoriteArticle.new
-    @favorite.user_id = current_user.id
-    @favorite.article_id = @article.id
-    @favorite.save
-    redirect_to(:back)
-  end
-
-  def favorites
-    @favorites = FavoriteArticle.where(:user_id => current_user.id)
-  end
-
-  def my_favorites
-    @user = User.find(params[:format])
-    @my_favorites = FavoriteArticle.where(:user_id => @user.id)
-  end
-
-  def favorite_destroy
-    @favorite = FavoriteArticle.find_by(article_id: params[:id], user_id: current_user.id)
-    @favorite.delete
     redirect_to(:back)
   end
 

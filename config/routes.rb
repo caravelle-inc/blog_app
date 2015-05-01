@@ -6,14 +6,14 @@ Rails.application.routes.draw do
 
   resources :articles do
     member do
-      post 'favorite'
-      delete 'favorite_destroy'
+      # post 'favorite'
+      # delete 'favorite_destroy'
     end
 
     collection do
-      get 'favorites'
-      get 'my_favorites'
-      get "article_search"
+      # get 'favorites'
+      # get 'my_favorites'
+      # get "article_search"
       get 'my_articles'
     end
 
@@ -26,14 +26,7 @@ Rails.application.routes.draw do
       :sessions => 'users/sessions'
   }
 
-  resources :users, :only => [:index, :show, :destroy] do
-    member do
-      post 'follow'
-      delete 'follow_destroy'
-      get 'follow_list'
-      get 'follower_list'
-    end
-  end
+  resources :users, :only => [:index, :show, :destroy]
 
   resources :friendships do
     member do
@@ -47,11 +40,6 @@ Rails.application.routes.draw do
   end
 
 
-
-  # devise_scope :user do
-  #   get '/users/sign_out' => 'users/sessions#destroy'
-  # end
-
   devise_for :admins, :controllers => {
       :registrations => 'admins/registrations',
       :sessions => 'admins/sessions'
@@ -64,6 +52,13 @@ Rails.application.routes.draw do
       get "search"
     end
   end
+
+  resources :favorites, :only => [:index, :show, :destroy] do
+    member do
+      post 'add'
+    end
+  end
+
 
 
 #deviseのログアウトをlogin_user,admin_userを分けようと試みたが一旦保留#
