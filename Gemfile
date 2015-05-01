@@ -43,6 +43,8 @@ gem "gracenote"
 # gem "jquery-turbolinks" # Turbolinksで遷移したときもjQuery.ready()を呼び出してくれる
 gem "kaminari"
 
+gem 'rails_config'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

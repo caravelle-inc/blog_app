@@ -5,15 +5,7 @@ Rails.application.routes.draw do
 
 
   resources :articles do
-    member do
-      # post 'favorite'
-      # delete 'favorite_destroy'
-    end
-
     collection do
-      # get 'favorites'
-      # get 'my_favorites'
-      # get "article_search"
       get 'my_articles'
     end
 
