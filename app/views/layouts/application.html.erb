@@ -28,7 +28,7 @@
                 <li><%= link_to "ユーザ一覧", users_path %></li>
                 <% if user_signed_in? %>
                     <li><%= link_to "記事作成", new_article_path %></li>
-                    <li><%= link_to "お気に入り", favorite_list_articles_path %></li>
+                    <li><%= link_to "お気に入り", favorite_list_favorites_path %></li>
                     <li><%= link_to "楽曲情報検索", searches_path %></li>
                 <% end %>
               </ul>

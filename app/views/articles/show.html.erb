@@ -14,7 +14,7 @@
             <% if favorite_article?(@article) %>
                 <%= button_to "お気に入り", favorite_article_path(@article.id), method: :favorite, data: {confirm: "お気に入りに追加しますか"}, class: 'btn btn-primary btn-xs' %>
             <% else %>
-                <%= button_to "お気に入り削除", favorite_destroy_article_path(@article.id), method: :delete, data: {confirm: "削除していいですか？"}, class: 'btn btn-danger btn-xs' %>
+                <%= button_to "お気に入り削除", favorite_path(@article.id), method: :delete, data: {confirm: "削除していいですか？"}, class: 'btn btn-danger btn-xs' %>
             <% end %>
             <div class="content"><%= @article.content %></div>
 
@@ -28,7 +28,6 @@
                       <%= @comment.errors.messages[:comment][0] %>
                   <% end %>
                 </p>
-
                 <p>
                   <%= f.submit :'コメントする', :class => "btn btn-primary" %>
                 </p>

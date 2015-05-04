@@ -15,9 +15,9 @@
           <div class="content-sub">
             <% if user_signed_in? %>
                 <% if favorite_article?(article) %>
-                    <%= button_to "お気に入り", favorite_article_path(article.id), method: :favorite, data: {confirm: "お気に入りに追加しますか"}, class: 'btn btn-primary btn-xs' %>
+                    <%= button_to "お気に入り", favorite_favorite_path(article.id), method: :favorite, data: {confirm: "お気に入りに追加しますか"}, class: 'btn btn-primary btn-xs' %>
                 <% else %>
-                    <%= button_to "お気に入り削除", favorite_destroy_article_path(article.id), method: :delete, data: {confirm: "削除していいですか？"}, class: 'btn btn-danger btn-xs' %>
+                    <%= button_to "お気に入り削除", favorite_path(article.id), method: :delete, data: {confirm: "削除していいですか？"}, class: 'btn btn-danger btn-xs' %>
                 <% end %>
                 <%= link_to "削除", article_path(article.id), method: :delete, data: {confirm: "削除していいですか？"}, class: 'btn btn-danger btn-xs' %>
                 <%= link_to "編集", edit_article_path(article.id), class: 'btn btn-primary btn-xs' %>

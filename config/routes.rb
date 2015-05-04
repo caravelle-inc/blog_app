@@ -5,21 +5,23 @@ Rails.application.routes.draw do
 
 
   resources :articles do
-    member do
-      post 'favorite'
-      delete 'favorite_destroy'
-    end
-
     collection do
-      get 'favorite_list'
-      get 'my_favorites'
-      get "article_search"
       get 'my_articles'
     end
 
     resources :comments
   end
 
+  resources :favorites, :only => [:destroy] do
+    member do
+      post 'favorite'
+    end
+
+    collection do
+      get 'favorite_list'
+      get 'my_favorites'
+    end
+  end
 
   devise_for :users, :controllers => {
       :registrations => 'users/registrations',

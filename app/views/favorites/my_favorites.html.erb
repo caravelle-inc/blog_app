@@ -16,7 +16,7 @@
 
           <div class="content-sub">
             <% if user_signed_in? %>
-                <%= button_to "お気に入り削除", favorite_destroy_article_path(favorite_article.id), method: :delete, data: { confirm: "お気に入りから削除しますか？" }, class: 'btn btn-danger btn-xs' %>
+                <%= button_to "お気に入り削除", favorite_path(favorite_article.id), method: :delete, data: { confirm: "お気に入りから削除しますか？" }, class: 'btn btn-danger btn-xs' %>
             <% end %>
             <div><%= link_to "コメント", article_path(favorite_article.id) %>
               <%= favorite_article.comments.count %> 件</div>
