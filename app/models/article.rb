@@ -9,12 +9,12 @@ class Article < ActiveRecord::Base
 
   validates :content,
             presence: { message: "コメントを入力してください" },
-            length: { in: 5..20 , message: "10文字以上20文字以内で入力してください" }
+            length: { in: 5..20, message: "5文字以上20文字以内で入力してください" }
 
   validates :youtube_url,
             presence: { message: "youtubeのURLを入れてください" }
 
-  paginates_per 1  # 1ページあたりの表示件数
+  paginates_per 1
 
 
 end

@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only:[:show, :edit, :update, :destroy, :favorite, :article_search]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @articles = Article.all.order('created_at DESC').page(params[:page])
@@ -7,7 +8,8 @@ class ArticlesController < ApplicationController
 
   def show
     @comment = Comment.new
-    @comments = Comment.where(:article_id => @article.id)
+    @article_comments = Comment.where(:article_id => @article.id)
+    @article_user = @article.user
   end
 
   def new
@@ -24,8 +26,10 @@ class ArticlesController < ApplicationController
       @article.youtube_url = base_url + url_id
 
       if @article.save
+        flash[:notice] = "記事を作成しました。"
         redirect_to articles_path
       else
+        flash[:notice] = "記事を作成出来ませんでした。"
         render 'new'
       end
 
@@ -33,8 +37,10 @@ class ArticlesController < ApplicationController
       @article.youtube_url = ""
 
       if @article.save
+        flash[:notice] = "記事を作成しました。"
         redirect_to articles_path
       else
+        flash[:alert] = "記事を作成出来ませんでした。"
         render 'new'
       end
     end
@@ -47,6 +53,7 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
+      flash[:notice] = "記事を編集しました。。"
       redirect_to articles_path
     else
       render 'edit'
@@ -55,24 +62,21 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    # if admin_signed_in?
-    #   redirect_to admins_path
-    # else
-    #   redirect_to user_path(current_user)
-    # end
+    flash[:alert] = "記事を削除しました。"
     redirect_to(:back)
   end
 
   def favorite
-    @favorite = FavoriteArticle.new
-    @favorite.user_id = current_user.id
-    @favorite.article_id = @article.id
-    @favorite.save
+    @favorite_article = FavoriteArticle.new
+    @favorite_article.user_id = current_user.id
+    @favorite_article.article_id = @article.id
+    @favorite_article.save
+    flash[:notice] = "お気に入りに追加しました。"
     redirect_to(:back)
   end
 
-  def favorites
-    @favorites = FavoriteArticle.where(:user_id => current_user.id)
+  def favorite_list
+    @favorite_list = FavoriteArticle.where(:user_id => current_user.id)
   end
 
   def my_favorites
@@ -80,9 +84,10 @@ class ArticlesController < ApplicationController
     @my_favorites = FavoriteArticle.where(:user_id => @user.id)
   end
 
-  def favorite_destroy
+  def destroy_favorite
     @favorite = FavoriteArticle.find_by(article_id: params[:id], user_id: current_user.id)
-    @favorite.delete
+    @favorite.destroy
+    flash[:alert] = "お気に入りを削除しました。"
     redirect_to(:back)
   end
 

@@ -1,10 +1,11 @@
 class SearchesController < ApplicationController
+  before_action :authenticate_user!
 
   require "gracenote"
   require 'yaml'
 
   def index
-    @result = []
+    @search_result = []
   end
 
   def search
@@ -16,10 +17,12 @@ class SearchesController < ApplicationController
     gracenote = Gracenote.new(spec)
 
     begin
-    @result = gracenote.findTrack(params[:artist], params[:album_title], params[:track_title], "0")
-    render 'index'
+      @search_result = gracenote.findTrack(params[:artist], params[:album_title], params[:track_title], "0")
+      flash[:notice] = "楽曲情報を取得しました。"
+      render 'index'
     rescue
-      render 'rescue'
+      flash[:alert] = "楽曲情報を取得できませんでした。"
+      render 'index'
     end
 
   end

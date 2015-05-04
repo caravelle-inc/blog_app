@@ -1,22 +1,19 @@
-<h2>Follow</h2>
+<h2>フォロー</h2>
 
 <table class="table table-hover">
-  <% @user.follow.each do |a| %>
+  <% @user.follow.each do |user| %>
       <tr>
-        <td><%= image_tag a.image_url(:thumb_i) %>
-          <%= link_to a.name, user_path(a.id) %></td>
-
+        <td><%= image_tag user.image_url(:thumb_i) %>
+          <%= link_to user.name, user_path(user.id) %></td>
         <% if user_signed_in? %>
             <td>
-                  <%= button_to "unfollow", follow_destroy_friendship_path(a.id), data: {confirm: "フォローを外しますか？"}, method: :delete, class: 'btn btn-danger btn-xs' %>
+              <%= button_to "unfollow", unfollow_friendship_path(user.id), data: {confirm: "フォローを外しますか？"}, method: :delete, class: 'btn btn-danger btn-xs' %>
             </td>
         <% end %>
-
       </tr>
   <% end %>
 </table>
 
-
-<div><%= link_to "Back", user_path(@user.id) %></div>
+<div><%= link_to "戻る", user_path(@user.id) %></div>
 
 

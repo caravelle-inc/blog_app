@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :destroy]
+  before_action :authenticate_user!, only: [:destroy]
 
   def index
     @users = User.all
-    @articles_new = Article.order('created_at DESC')
   end
 
   def show

@@ -1,18 +1,17 @@
-<h2>User一覧</h2>
+<h2>ユーザ一覧</h2>
 
 <table class="table table-hover">
-  <% @users.each do |a| %>
-      <% if !(current_user == a) %>
-
+  <% @users.each do |user| %>
+      <% if current_user != user %>
           <tr>
-            <td><%= image_tag a.image_url(:thumb_i) %>
-              <%= link_to a.name, user_path(a.id) %></td>
+            <td><%= image_tag user.image_url(:thumb_i) %>
+              <%= link_to user.name, user_path(user.id) %></td>
             <% if user_signed_in? %>
                 <td>
-                  <% if follow?(a) %>
-                      <%= button_to "follow", follow_friendship_path(a.id), data: {confirm: "フォローしますか？"}, method: :follow, class: 'btn btn-primary btn-xs' %>
+                  <% if follow?(user) %>
+                      <%= button_to "follow", follow_friendship_path(user.id), data: {confirm: "フォローしますか？"}, method: :follow, class: 'btn btn-primary btn-xs' %>
                   <% else %>
-                      <%= button_to "unfollow", follow_destroy_friendship_path(a.id), data: {confirm: "フォローを外しますか？"}, method: :delete, class: 'btn btn-danger btn-xs' %>
+                      <%= button_to "unfollow", unfollow_friendship_path(user.id), data: {confirm: "フォローを外しますか？"}, method: :delete, class: 'btn btn-danger btn-xs' %>
                   <% end %>
                 </td>
             <% end %>

@@ -6,7 +6,6 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<div class="background">
   <body>
     
   <div class="navbar navbar-inverse navbar-fixed-top header-menu" role="navigation">
@@ -21,20 +20,18 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
             </button>
-            <!--<div class="collapse navbar-collapse">-->
               <ul class="nav navbar-nav">
                 <li>
                   <%= link_to image_tag('logo.png'), articles_path, class: "btn btn-default" %>
                 </li>
-                <li><%= link_to "Articles", articles_path %></li>
-                <li><%= link_to "Users", users_path %></li>
+                <li><%= link_to "記事一覧", articles_path %></li>
+                <li><%= link_to "ユーザ一覧", users_path %></li>
                 <% if user_signed_in? %>
-                    <li><%= link_to "Article New", new_article_path %></li>
-                    <li><%= link_to "Favorite", favorites_articles_path %></li>
-                    <li><%= link_to "Searches", searches_path %></li>
+                    <li><%= link_to "記事作成", new_article_path %></li>
+                    <li><%= link_to "お気に入り", favorite_list_articles_path %></li>
+                    <li><%= link_to "楽曲情報検索", searches_path %></li>
                 <% end %>
               </ul>
-            <!--</div>-->
           </div>
         </div>
 
@@ -85,13 +82,12 @@
       </div>
       <div class="col-md-4">
         <% if user_signed_in? %>
-            <%= render partial: "layouts/sidebar", locals: {aritcles_new: @articles_new} %>
+            <%= render partial: "layouts/sidebar" %>
         <% end %>
       </div>
     </div>
   </div>
   </body>
-</div>
 </html>
 
 

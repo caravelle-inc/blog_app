@@ -1,79 +1,80 @@
+<h2> 楽曲情報検索 </h2>
 
+<div>
+  <%= form_tag({:action => "search"}, {:method => "get"}) do %>
+      <p><%= label :artist, :アーティスト名 %></p>
 
-  <h2> gracenote </h2>
+      <p><%= text_field_tag "artist", params[:artist] %></p>
 
-    <div>
-      <%= form_tag({:action => "search"}, {:method => "get"}) do %>
-          <p><%= label :artist, :artist %></p>
-          <p><%= text_field_tag "artist", params[:artist] %></p>
+      <p><%= label :album_title, :アルバム名 %></p>
 
-          <p><%= label :album_title, :album_title %></p>
-          <p><%= text_field_tag "album_title", params[:album_title] %></p>
+      <p><%= text_field_tag "album_title", params[:album_title] %></p>
 
-          <p><%= label :track_title, :track_title %></p>
-          <p><%= text_field_tag "track_title", params[:track_title] %></p>
+      <p><%= label :track_title, :曲名 %></p>
 
-          <p><%= submit_tag "検索", :class => "btn btn-primary" %></p>
-      <% end %>
+      <p><%= text_field_tag "track_title", params[:track_title] %></p>
 
-      < 取得結果 ><br/>
-      <% if @result.present? %>
-          <% @result.each do |rec| %>
-              <div class="table">
-                <table>
-                  <tr>
-                    <td width="180px">アルバムアーティスト名</td>
-                    <td><%= rec[:album_artist_name] %>
-                  </tr>
-                  <tr>
-                    <td>アルバムタイトル</td>
-                    <td><%= rec[:album_title] %></td>
-                  </tr>
-                  <tr>
-                    <td>ジャンル</td>
-                    <td>
-                      <% rec[:genre].each do |genre| %><%= genre[:text] + ' / ' %>
-                      <% end %></td>
-                  </tr>
-                  <tr>
-                    <td>ムード</td>
-                    <td>
-                      <% rec[:tracks].each do |track| %>
-                          <% track[:mood].each do |mood| %>
-                              <%= mood[:text] + " / " %>
-                          <% end %>
+      <p><%= submit_tag "検索", :class => "btn btn-primary" %></p>
+  <% end %>
+
+  < 取得結果 ><br/>
+  <% if @search_result.present? %>
+      <% @search_result.each do |music| %>
+          <div class="table">
+            <table>
+              <tr>
+                <td width="180px">アルバムアーティスト名</td>
+                <td><%= music[:album_artist_name] %>
+              </tr>
+              <tr>
+                <td>アルバムタイトル</td>
+                <td><%= music[:album_title] %></td>
+              </tr>
+              <tr>
+                <td>ジャンル</td>
+                <td>
+                  <% music[:genre].each do |genre| %>
+                      <%= genre[:text] + ' / ' %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td>ムード</td>
+                <td>
+                  <% music[:tracks].each do |track| %>
+                      <% track[:mood].each do |mood| %>
+                          <%= mood[:text] + " / " %>
                       <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>テンポ</td>
-                    <td>
-                      <% rec[:tracks].each do |track| %>
-                          <% track[:tempo].each do |tempo| %>
-                              <%= tempo[:text] + " / " %>
-                          <% end %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td>テンポ</td>
+                <td>
+                  <% music[:tracks].each do |track| %>
+                      <% track[:tempo].each do |tempo| %>
+                          <%= tempo[:text] + " / " %>
                       <% end %>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>説明</td>
-                    <td><%= link_to 'プロフィール情報', rec[:artist_image_url][1] %></td>
-                  </tr>
-                  <tr>
-                    <td>アルバムアート</td>
-                    <td><img src="<%= rec[:album_art_url][0] %>"/></td>
-                  </tr>
-                  <tr>
-                    <td>アーティスト画像</td>
-                    <td><img src="<%= rec[:artist_image_url][0] %>"/></td>
-                  </tr>
-                </table>
-              </div>
-          <% end %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td>説明</td>
+                <td><%= link_to 'プロフィール情報', music[:artist_image_url][1] %></td>
+              </tr>
+              <tr>
+                <td>アルバムアート</td>
+                <td><img src="<%= music[:album_art_url][0] %>"/></td>
+              </tr>
+              <tr>
+                <td>アーティスト画像</td>
+                <td><img src="<%= music[:artist_image_url][0] %>"/></td>
+              </tr>
+            </table>
+          </div>
       <% end %>
+  <% end %>
+  <br/>
 
-
-      <br/>
-
-    </div>
+</div>
 

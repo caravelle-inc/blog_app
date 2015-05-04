@@ -1,24 +1,25 @@
 <h2>お気に入り</h2>
 
-<% @my_favorites.each do |a| %>
+<% @my_favorites.each do |favorite| %>
     <ul>
       <div class="article">
         <div class="content">
           <div class="content-sub">
-            <% @article = Article.find(a.article_id) %>
-              <% user = @article.user %>
+            <% favorite_article = favorite.article %>
+              <% user = favorite_article.user %>
               <%= image_tag user.image_url(:thumb_i) %>
               <%= link_to user.name, user_path(user.id) %>
-              <div><h3><%= link_to @article.title, article_path(@article.id) %></h3></div>
+              <div><h3><%= link_to favorite_article.title, article_path(favorite_article.id) %></h3></div>
           </div>
 
-          <iframe width="500" height="350" src="<%= @article.youtube_url %>" frameborder="0" allowfullscreen></iframe>
+          <iframe width="500" height="350" src="<%= favorite_article.youtube_url %>" frameborder="0" allowfullscreen></iframe>
 
           <div class="content-sub">
             <% if user_signed_in? %>
-                <%= button_to "お気に入り削除", favorite_destroy_article_path(@article.id), method: :delete, data: {confirm: "お気に入りから削除しますか？"}, class: 'btn btn-danger btn-xs' %>
+                <%= button_to "お気に入り削除", favorite_destroy_article_path(favorite_article.id), method: :delete, data: { confirm: "お気に入りから削除しますか？" }, class: 'btn btn-danger btn-xs' %>
             <% end %>
-            <div><%= link_to "コメント", article_path(@article.id) %> <%= @article.comments.count %> 件</div>
+            <div><%= link_to "コメント", article_path(favorite_article.id) %>
+              <%= favorite_article.comments.count %> 件</div>
           </div>
 
         </div>
@@ -26,4 +27,4 @@
     </ul>
 <% end %>
 
-<div><%= link_to "Back", user_path(@user.id) %></div>
+<div><%= link_to "戻る", user_path(@user.id) %></div>

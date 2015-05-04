@@ -12,9 +12,6 @@ class User < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
-  def friends
-    follow + follower
-  end
 
   #rails consoleでNameError: uninitialized constant User::ImageUploaderに対して
   require 'carrierwave/orm/activerecord'
