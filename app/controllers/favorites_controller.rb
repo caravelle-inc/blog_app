@@ -13,12 +13,8 @@ class FavoritesController < ApplicationController
   end
 
   def favorite_list
-    @favorite_list = FavoriteArticle.where(:user_id => current_user.id)
-  end
-
-  def my_favorites
     @user = User.find(params[:format])
-    @my_favorites = FavoriteArticle.where(:user_id => @user.id)
+    @favorite_list = FavoriteArticle.where(:user_id => @user.id)
   end
 
   def destroy

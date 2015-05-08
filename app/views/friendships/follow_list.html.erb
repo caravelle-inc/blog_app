@@ -1,19 +1,10 @@
 <h2>フォロー</h2>
 
 <table class="table table-hover">
-  <% @user.follow.each do |user| %>
-      <tr>
-        <td><%= image_tag user.image_url(:thumb_i) %>
-          <%= link_to user.name, user_path(user.id) %></td>
-        <% if user_signed_in? %>
-            <td>
-              <%= button_to "unfollow", unfollow_friendship_path(user.id), data: {confirm: "フォローを外しますか？"}, method: :delete, class: 'btn btn-danger btn-xs' %>
-            </td>
-        <% end %>
-      </tr>
-  <% end %>
+
+  <%= render partial: "friendship_list", locals: { friends: @user.follow } %>
+
 </table>
 
 <div><%= link_to "戻る", user_path(@user.id) %></div>
-
 

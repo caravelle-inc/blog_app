@@ -1,0 +1,14 @@
+<% friends.each do |user| %>
+    <tr>
+      <td><%= image_tag user.image_url(:thumb_i) %>
+        <%= link_to user.name, user_path(user.id) %></td>
+      <td>
+        <% if follow?(user) %>
+            <%= button_to "follow", follow_friendship_path(user.id), data: {confirm: "フォローしますか？"}, method: :follow, class: 'btn btn-primary btn-xs' %>
+        <% else %>
+            <%= button_to "unfollow", unfollow_friendship_path(user.id), data: {confirm: "フォローを外しますか？"}, method: :delete, class: 'btn btn-danger btn-xs' %>
+        <% end %>
+      </td>
+    </tr>
+<% end %>
+

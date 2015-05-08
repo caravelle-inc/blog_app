@@ -1,30 +1,18 @@
-
 <%= form_for @article do |f| %>
-
-    <% @error = @article.errors %>
 
     <p>
       <%= f.label :title %><br>
       <%= f.text_field :title %>
-      <% if @error.any? %>
-          <%= @error.messages[:title][0]%>
-      <% end %>
     </p>
 
     <p>
       <%= f.label :content %><br>
       <%= f.text_area :content %>
-      <% if @error.any? %>
-          <%= @error.messages[:content][0]%>
-      <% end %>
     </p>
 
     <p>
       <%= f.label :youtube_url %><br>
       <%= f.url_field :youtube_url %>
-      <% if @error.any? %>
-          <%= @error.messages[:youtube_url][0]%>
-      <% end %>
     </p>
 
     <p>

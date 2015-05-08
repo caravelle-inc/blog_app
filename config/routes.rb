@@ -19,7 +19,6 @@ Rails.application.routes.draw do
 
     collection do
       get 'favorite_list'
-      get 'my_favorites'
     end
   end
 

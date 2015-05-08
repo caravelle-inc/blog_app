@@ -1,5 +1,16 @@
-  <h2>記事作成</h2>
+<% if @article.errors.any? %>
+    <div class="alert alert-danger">
+      <h3><%= @article.errors.count %>件のエラーがあります。</h3>
+      <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
 
-  <%= render 'form' %>
+<h2>記事作成</h2>
+
+<%= render 'form' %>
 
 
