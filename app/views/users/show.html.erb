@@ -25,13 +25,13 @@
       <td><h4><%= link_to "お気に入り", favorite_list_favorites_path(@user.id) %></h4></td><td><%= @user.favorite_article.count %></td>
     </tr>
     <tr>
-      <td><h4><%= link_to "フォロー", follow_list_friendships_path(@user.id) %></h4></td><td><%= @user.follow.count %></td>
+      <td><h4><%= link_to "フォロー", follow_list_friendships_path(@user.id) %></h4></td><td><%= @user.follow_user.count %></td>
     </tr>
     <tr>
-      <td><h4><%= link_to "フォロワー", follower_list_friendships_path(@user.id) %></h4></td><td><%= @user.follower.count %></td>
+      <td><h4><%= link_to "フォロワー", follower_list_friendships_path(@user.id) %></h4></td><td><%= @user.follower_user.count %></td>
     </tr>
     <tr>
-      <td><h4><%= link_to "記事", my_articles_articles_path(@user.id) %></h4></td><td><%= @user_articles.count %></td>
+      <td><h4><%= link_to @user.name + "さんの記事一覧", my_articles_articles_path(@user.id) %></h4></td><td><%= @user_articles.count %></td>
     </tr>
   </table>
 

@@ -5,7 +5,7 @@ class SearchesController < ApplicationController
   require 'yaml'
 
   def index
-    @search_result = []
+    @searched_result = []
   end
 
   def search
@@ -17,12 +17,12 @@ class SearchesController < ApplicationController
     gracenote = Gracenote.new(spec)
 
     begin
-      @search_result = gracenote.findTrack(params[:artist], params[:album_title], params[:track_title], "0")
+      @searched_result = gracenote.findTrack(params[:artist], params[:album_title], params[:track_title], "0")
       flash[:notice] = "楽曲情報を取得しました。"
-      render 'index'
+      render 'result'
     rescue
       flash[:alert] = "楽曲情報を取得できませんでした。"
-      render 'index'
+      render 'result'
     end
 
   end

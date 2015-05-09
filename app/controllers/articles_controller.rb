@@ -20,31 +20,28 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     @article.user_id = current_user.id
 
-    if @article.youtube_url.include?('https://www.youtube.com/')
-      url_id = @article.youtube_url.gsub('https://www.youtube.com/watch?v=', '')
-      base_url = "https://www.youtube.com/embed/"
+    youtube_url = 'https://www.youtube.com/'
+
+    if @article.youtube_url.include?(youtube_url)
+      url_id = @article.youtube_url.gsub(youtube_url + 'watch?v=', '')
+      base_url = youtube_url + 'embed/'
       @article.youtube_url = base_url + url_id
 
       if @article.save
-        flash[:notice] = "記事を作成しました。"
-        redirect_to articles_path
+        created_article
       else
-        flash[:notice] = "記事を作成出来ませんでした。"
-        render 'new'
+        not_created_article
       end
 
     else
       @article.youtube_url = ""
 
       if @article.save
-        flash[:notice] = "記事を作成しました。"
-        redirect_to articles_path
+        created_article
       else
-        flash[:alert] = "記事を作成出来ませんでした。"
-        render 'new'
+        not_created_article
       end
     end
-
   end
 
   def edit
@@ -53,7 +50,7 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      flash[:notice] = "記事を編集しました。。"
+      flash[:notice] = "記事を編集しました。"
       redirect_to articles_path
     else
       render 'edit'
@@ -81,5 +78,18 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
+  def created_article
+    flash[:notice] = "記事を作成しました。"
+    redirect_to articles_path
+  end
+
+  def not_created_article
+    flash[:alert] = "記事を作成出来ませんでした。"
+    render 'new'
+  end
+
 
 end
+
+
+

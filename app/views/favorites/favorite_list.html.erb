@@ -13,7 +13,7 @@
             </div>
           </div>
 
-          <iframe width="500" height="350" src="<%= favorite_article.youtube_url %>" frameborder="0" allowfullscreen></iframe>
+          <%= render partial: "iframe", locals: { youtube_movie: favorite_article.youtube_url } %>
 
           <div class="content-sub">
           <% if user_signed_in? %>

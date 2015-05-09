@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-
   root 'articles#index'
-
 
   resources :articles do
     collection do
@@ -29,7 +27,7 @@ Rails.application.routes.draw do
 
   resources :users, :only => [:index, :show, :destroy]
 
-  resources :friendships do
+  resources :friendships, :only => [] do
     member do
       post 'follow'
       delete 'unfollow'
