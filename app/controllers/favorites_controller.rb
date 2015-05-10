@@ -13,7 +13,7 @@ class FavoritesController < ApplicationController
   end
 
   def favorite_list
-    @user = User.find(params[:format])
+    @user = User.find(params[:id])
     @favorite_list = FavoriteArticle.where(:user_id => @user.id)
   end
 

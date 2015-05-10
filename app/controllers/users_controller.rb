@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:show, :destroy]
+  before_action :set_user, only: [:show, :destroy, :user_articles]
   before_action :authenticate_user!, only: [:destroy]
 
   def index
-    @users = User.all
+    @users = User.all.reject { |user| user.id == current_user.id }
   end
 
   def show
@@ -15,6 +15,10 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to admins_path
+  end
+
+  def user_articles
+    @user_articles = @user.articles.order('created_at DESC')
   end
 
   private

@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only:[:show, :edit, :update, :destroy, :favorite, :article_search]
+  before_action :set_article, only:[:show, :edit, :update, :destroy, :favorite]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
@@ -66,11 +66,6 @@ class ArticlesController < ApplicationController
     redirect_to(:back)
   end
 
-  def my_articles
-    @user = User.find(params[:format])
-    @user_articles = @user.articles.order('created_at DESC')
-  end
-
   private
 
   def article_params
@@ -91,8 +86,4 @@ class ArticlesController < ApplicationController
     render 'new'
   end
 
-
 end
-
-
-
