@@ -1,0 +1,31 @@
+<h2>お気に入り</h2>
+
+<% @favorites.each do |a| %>
+    <ul>
+      <div class="article">
+        <div class="content">
+          <div class="content-sub">
+            <% @article = Article.find(a.article_id) %>
+            <div class="content-sub">
+              <% user = @article.user %>
+              <%= image_tag user.image_url(:thumb_i) %>
+              <%= link_to user.name, user_path(user.id) %>
+              <div><h3><%= link_to @article.title, article_path(@article.id) %></h3></div>
+            </div>
+          </div>
+
+          <iframe width="500" height="350" src="<%= @article.youtube_url %>" frameborder="0" allowfullscreen></iframe>
+
+          <div class="content-sub">
+          <% if user_signed_in? %>
+          <%= button_to "お気に入り削除", favorite_path(@article.id), method: :delete, data: {confirm: "お気に入りから削除しますか？"}, class: 'btn btn-danger btn-xs' %>
+          <% end %>
+            <div><%= link_to "コメント", article_path(@article.id) %> <%= @article.comments.count %> 件</div>
+          </div>
+
+        </div>
+      </div>
+    </ul>
+<% end %>
+
+

@@ -19,3 +19,7 @@
 database.yml
 development.rb
 .idea
+.idea/workspace.xml
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml

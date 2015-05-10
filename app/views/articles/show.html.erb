@@ -11,7 +11,7 @@
 
       <div class="content-sub">
         <% if user_signed_in? %>
-            <% if FavoriteArticle.favorite_check?(article) %>
+            <% if FavoriteArticle.favorite_check?(@article, @article.user) %>
                 <%= button_to "お気に入り", favorite_article_path(@article.id), method: :favorite, data: {confirm: "お気に入りに追加しますか"}, class: 'btn btn-primary btn-xs' %>
             <% else %>
                 <%= button_to "お気に入り削除", favorite_path(@article.id), method: :delete, data: {confirm: "削除していいですか？"}, class: 'btn btn-danger btn-xs' %>

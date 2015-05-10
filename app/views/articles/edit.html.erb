@@ -1,7 +1,30 @@
 
-
 <h2>編集</h2>
 
 <%= render 'form' %>
+
+<%= form_for @article do |f| %>
+
+    <p>
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+      <% if @article.errors.any? %>
+          <%= @article.errors.messages[:title][0]%>
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :content %><br>
+      <%= f.text_area :content %>
+      <% if @article.errors.any? %>
+          <%= @article.errors.messages[:content][0]%>
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.submit :"更新", :class => "btn btn-primary" %>
+    </p>
+
+<% end %>
 
 <p><%= link_to "戻る", user_path(@article.user_id) %></p>

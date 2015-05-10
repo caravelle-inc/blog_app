@@ -11,7 +11,6 @@
           </div>
 
           <%= render partial: "iframe", locals: {youtube_movie: article.youtube_url} %>
-</iframe>
 
           <div class="content-sub">
             <% if user_signed_in? %>
@@ -22,9 +21,8 @@
                 <% end %>
                 <%= link_to "削除", article_path(article.id), method: :delete, data: {confirm: "削除していいですか？"}, class: 'btn btn-danger btn-xs' %>
                 <%= link_to "編集", edit_article_path(article.id), class: 'btn btn-primary btn-xs' %>
-
-            <% end %>
             <div><%= link_to "コメント", article_path(article.id) %> <%= article.comments.count %> 件</div>
+            <% end %>
           </div>
         </div>
       </div>
