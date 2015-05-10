@@ -7,7 +7,7 @@
           <%= link_to user.name, user_path(user.id) %></td>
         <% if user_signed_in? %>
             <td>
-              <% if follow?(user) %>
+              <% if Friendship.follow?(user, current_user) %>
                   <%= button_to "follow", follow_friendship_path(user.id), data: {confirm: "フォローしますか？"}, method: :follow, class: 'btn btn-primary btn-xs' %>
               <% else %>
                   <%= button_to "unfollow", unfollow_friendship_path(user.id), data: {confirm: "フォローを外しますか？"}, method: :delete, class: 'btn btn-danger btn-xs' %>
