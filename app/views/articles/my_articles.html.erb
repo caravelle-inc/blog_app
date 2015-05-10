@@ -10,17 +10,19 @@
             <h3><%= link_to article.title, article_path(article.id) %></h3>
           </div>
 
-          <%= render partial: "iframe", locals: { youtube_movie: article.youtube_url } %>
+          <%= render partial: "iframe", locals: {youtube_movie: article.youtube_url} %>
+</iframe>
 
           <div class="content-sub">
             <% if user_signed_in? %>
-                <% if FavoriteArticle.self.favorite_check?(article, current_user) %>
+                <% if FavoriteArticle.favorite_check?(article, current_user) %>
                     <%= button_to "お気に入り", favorite_favorite_path(article.id), method: :favorite, data: {confirm: "お気に入りに追加しますか"}, class: 'btn btn-primary btn-xs' %>
                 <% else %>
                     <%= button_to "お気に入り削除", favorite_path(article.id), method: :delete, data: {confirm: "削除していいですか？"}, class: 'btn btn-danger btn-xs' %>
                 <% end %>
                 <%= link_to "削除", article_path(article.id), method: :delete, data: {confirm: "削除していいですか？"}, class: 'btn btn-danger btn-xs' %>
                 <%= link_to "編集", edit_article_path(article.id), class: 'btn btn-primary btn-xs' %>
+
             <% end %>
             <div><%= link_to "コメント", article_path(article.id) %> <%= article.comments.count %> 件</div>
           </div>

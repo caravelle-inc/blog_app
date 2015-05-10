@@ -9,7 +9,6 @@ class SearchesController < ApplicationController
   end
 
   def search
-
     config = YAML.load_file( 'config.yml' )
     gracenote_conf = config["gracenote"]
     spec = {:clientID => gracenote_conf["clientID"], :clientTag => gracenote_conf["clientTag"],
@@ -24,7 +23,6 @@ class SearchesController < ApplicationController
       flash[:alert] = "楽曲情報を取得できませんでした。"
       render 'result'
     end
-
   end
 
 end
