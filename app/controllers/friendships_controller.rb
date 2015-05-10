@@ -1,5 +1,4 @@
 class FriendshipsController < ApplicationController
-
   before_action :set_user, only: [:follow_list, :follower_list]
   before_action :authenticate_user!
 

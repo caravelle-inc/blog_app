@@ -1,7 +1,9 @@
 <% friends.each do |user| %>
     <tr>
-      <td><%= image_tag user.image_url(:thumb_i) %>
-        <%= link_to user.name, user_path(user.id) %></td>
+      <td>
+        <%= image_tag user.image_url(:thumb_i) %>
+        <%= link_to user.name, user_path(user.id) %>
+      </td>
       <td>
         <% if Friendship.follow?(user, current_user) %>
             <%= button_to "follow", follow_friendship_path(user.id), data: {confirm: "フォローしますか？"}, method: :follow, class: 'btn btn-primary btn-xs' %>

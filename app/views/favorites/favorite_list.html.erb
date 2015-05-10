@@ -5,8 +5,8 @@
       <div class="article">
         <div class="content">
           <div class="content-sub">
-            <% favorite_article = favorite.article %>
             <div class="content-sub">
+              <% favorite_article = favorite.article %>
               <%= image_tag favorite_article.user.image_url(:thumb_i) %>
               <%= link_to favorite_article.user.name, user_path(favorite_article.user_id) %>
               <div><h3><%= link_to favorite_article.title, article_path(favorite_article.id) %></h3></div>
@@ -21,7 +21,6 @@
           <% end %>
             <div><%= link_to "コメント", article_path(favorite_article.id) %> <%= favorite_article.comments.count %> 件</div>
           </div>
-
         </div>
       </div>
     </ul>
