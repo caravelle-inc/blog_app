@@ -13,6 +13,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    if @user != current_user
+      flash[:alert] = "管理者以外は他のユーザを削除できません。"
+      redirect_to admins_path
+    end
     @user.destroy
     redirect_to admins_path
   end

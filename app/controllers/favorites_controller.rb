@@ -1,5 +1,4 @@
 class FavoritesController < ApplicationController
-
   before_action :set_article, only:[:favorite]
   before_action :authenticate_user!
 

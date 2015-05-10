@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only:[:show, :edit, :update, :destroy, :favorite]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
@@ -46,9 +46,9 @@ class ArticlesController < ApplicationController
 
   def edit
     if @article.user_id != current_user.id
+      flash[:alert] = "他のユーザの記事は編集できません。"
       redirect_to user_path(@article.user_id)
     end
-
   end
 
   def update
@@ -56,11 +56,16 @@ class ArticlesController < ApplicationController
       flash[:notice] = "記事を編集しました。"
       redirect_to articles_path
     else
+      flash[:alert] = "記事を編集できませんでした。"
       render 'edit'
     end
   end
 
   def destroy
+    if @article.user_id != current_user.id
+      flash[:alert] = "他のユーザの記事は削除できません。"
+      redirect_to new_admin_session_path
+    end
     @article.destroy
     flash[:alert] = "記事を削除しました。"
     redirect_to(:back)

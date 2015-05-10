@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-
-  before_action :set_comment, only: [:edit, :update]
+  before_action :set_comment, except: [:create]
+  before_action :set_article, only: [:edit, :update]
   before_action :authenticate_user!
 
   def create
@@ -15,6 +15,10 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    if @comment.user_id != current_user.id
+      flash[:alert] = "他のユーザのコメントは編集できません。"
+      redirect_to(:back)
+    end
   end
 
   def update
@@ -28,7 +32,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
+    if @comment.user_id != current_user.id
+      flash[:alert] = "他のユーザのコメントは削除できません。"
+      redirect_to(:back)
+    end
     @comment.destroy
     flash[:alert] = "コメントを削除しました。"
     redirect_to article_path(@comment.article_id)
@@ -42,8 +49,11 @@ class CommentsController < ApplicationController
   end
 
   def set_comment
-    @article = Article.find(params[:article_id])
     @comment = Comment.find(params[:id])
+  end
+
+  def set_article
+    @article = Article.find(params[:article_id])
   end
 
 end
