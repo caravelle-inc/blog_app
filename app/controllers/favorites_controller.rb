@@ -3,9 +3,7 @@ class FavoritesController < ApplicationController
   before_action :authenticate_user!
 
   def favorite
-    @favorite_article = FavoriteArticle.new
-    @favorite_article.user_id = current_user.id
-    @favorite_article.article_id = @article.id
+    @favorite_article = FavoriteArticle.new(user_id: current_user.id, article_id: @article.id)
     @favorite_article.save
     flash[:notice] = "お気に入りに追加しました。"
     redirect_to(:back)
@@ -13,7 +11,7 @@ class FavoritesController < ApplicationController
 
   def favorite_list
     @user = User.find(params[:id])
-    @favorite_list = FavoriteArticle.where(:user_id => @user.id)
+    @favorite_list = @user.favorite_article.includes(:article)
   end
 
   def destroy

@@ -39,7 +39,7 @@
               <li><%= image_tag comment.user.image_url(:thumb_i) %>
               <%= link_to comment.user.name, user_path(comment.user_id) %>
               <%= comment.comment %>
-              <% if comment_owner?(comment) %>
+              <% if comment.comment_owner?(current_user) %>
                   <%= link_to "削除", article_comment_path(comment.article_id, comment.id), data: {confirm: "本当に良いですか？"}, method: :delete, class: 'btn btn-danger btn-xs' %>
                   <%= link_to "編集", edit_article_comment_path(comment.article_id, comment.id), class: 'btn btn-primary btn-xs' %>
               <% end %>

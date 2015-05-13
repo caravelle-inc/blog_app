@@ -15,6 +15,14 @@ class Article < ActiveRecord::Base
   paginates_per 1
 
 
+  def article_owner?(current_user)
+    self.user_id != current_user.id
+  end
+
+  def favorite_check?(current_user)
+    self.favorite_articles.find_by(article_id: self.id, user_id: current_user.id).nil?
+  end
+
 end
 
 

@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    if @article.user_id != current_user.id
+    if @article.article_owner?(current_user)
       flash[:alert] = "他のユーザの記事は編集できません。"
       redirect_to user_path(@article.user_id)
     end
@@ -62,7 +62,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    if @article.user_id != current_user.id
+    if @article.article_owner?(current_user)
       flash[:alert] = "他のユーザの記事は削除できません。"
       redirect_to new_admin_session_path
     end

@@ -3,10 +3,7 @@ class FriendshipsController < ApplicationController
   before_action :authenticate_user!
 
   def follow
-    @user = User.find(params[:id])
-    @follow = Friendship.new
-    @follow.from_user_id = current_user.id
-    @follow.to_user_id = @user.id
+    @follow = Friendship.new(from_user_id: current_user.id, to_user_id: params[:id])
     @follow.save
     flash[:notice] = "フォローしました。"
     redirect_to(:back)

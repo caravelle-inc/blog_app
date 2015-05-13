@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:destroy]
 
   def index
-    @users = User.all.reject { |user| user.id == current_user.id }
+    @users = User.where.not(id: current_user.id )
   end
 
   def show
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user != current_user
+    if not_current_user?(current_user)
       flash[:alert] = "管理者以外は他のユーザを削除できません。"
       redirect_to admins_path
     end

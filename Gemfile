@@ -45,6 +45,10 @@ gem "kaminari"
 
 gem 'rails_config'
 
+group :development do
+  gem 'bullet'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
