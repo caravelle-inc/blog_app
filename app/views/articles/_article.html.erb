@@ -1,4 +1,4 @@
-<% @articles.each do |article| %>
+<% articles.each do |article| %>
     <ul>
       <div class="article">
         <div class="content">
@@ -9,21 +9,20 @@
             <div><h3><%= link_to article.title, article_path(article.id) %></h3></div>
           </div>
 
-          <iframe width="500" height="350" src="<%= article.youtube_url %>" frameborder="0" allowfullscreen></iframe>
+          <%= render partial: "iframe", locals: { youtube_movie: article.youtube_url } %>
 
           <div class="content-sub">
-
             <% if user_signed_in? %>
-                <% if favorite_article?(article) %>
-                    <%= button_to "お気に入り", add_favorite_path(article.id), method: :add, data: {confirm: "お気に入りに追加しますか"}, class: 'btn btn-primary btn-xs' %>
+                <% if article.favorite_check?(current_user) %>
+                    <%= button_to "お気に入り追加", favorite_favorite_path(article.id), method: :favorite, data: { confirm: "お気に入りに追加しますか" }, class: 'btn btn-primary btn-xs' %>
                 <% else %>
-                    <%= button_to "お気に入り削除", favorite_path(article.id), method: :delete, data: {confirm: "削除していいですか？"}, class: 'btn btn-danger btn-xs' %>
+                    <%= button_to "お気に入り削除", favorite_path(article.id), method: :delete, data: { confirm: "削除していいですか？" }, class: 'btn btn-danger btn-xs' %>
                 <% end %>
             <% end %>
-
             <div><%= link_to "コメント", article_path(article.id) %> <%= article.comments.count %> 件</div>
           </div>
         </div>
       </div>
     </ul>
 <% end %>
+

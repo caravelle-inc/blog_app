@@ -2,18 +2,17 @@
   <div class="article">
     <div class="content">
       <div class="content-sub">
-        <% user = @article.user %>
-        <%= image_tag user.image_url(:thumb_i) %>
-        <%= link_to user.name, user_path(user.id) %>
-        <div><h2><%= link_to @article.title, article_path(@article.id) %></h2></div>
+        <%= image_tag @article_user.image_url(:thumb_i) %>
+        <%= link_to @article_user.name, user_path(@article_user.id) %>
+        <h2><%= link_to @article.title, article_path(@article.id) %></h2>
       </div>
 
-      <iframe width="500" height="350" src="<%= @article.youtube_url %>" frameborder="0" allowfullscreen></iframe>
+      <%= render partial: "iframe", locals: { youtube_movie: @article.youtube_url } %>
 
       <div class="content-sub">
         <% if user_signed_in? %>
-            <% if favorite_article?(@article) %>
-                <%= button_to "お気に入り", add_favorite_path(@article.id), method: :favorite, data: {confirm: "お気に入りに追加しますか"}, class: 'btn btn-primary btn-xs' %>
+            <% if FavoriteArticle.favorite_check?(@article, current_user) %>
+                <%= button_to "お気に入り", favorite_favorite_path(@article.id), method: :favorite, data: {confirm: "お気に入りに追加しますか"}, class: 'btn btn-primary btn-xs' %>
             <% else %>
                 <%= button_to "お気に入り削除", favorite_path(@article.id), method: :delete, data: {confirm: "削除していいですか？"}, class: 'btn btn-danger btn-xs' %>
             <% end %>
@@ -29,24 +28,22 @@
                       <%= @comment.errors.messages[:comment][0] %>
                   <% end %>
                 </p>
-
                 <p>
                   <%= f.submit :'コメントする', :class => "btn btn-primary" %>
                 </p>
-
             <% end %>
         <% end %>
 
-
-        <% @comments.each do |comment| %>
+        <% @article_comments.each do |comment| %>
             <ul>
-              <% user = User.find(comment.user_id) %>
-              <%= image_tag user.image_url(:thumb_i) %>
-              <%= link_to user.name, user_path(user.id) %>
+              <li><%= image_tag comment.user.image_url(:thumb_i) %>
+              <%= link_to comment.user.name, user_path(comment.user_id) %>
               <%= comment.comment %>
-              <% if comment_owner?(comment) %>
+              <% if comment.comment_owner?(current_user) %>
                   <%= link_to "削除", article_comment_path(comment.article_id, comment.id), data: {confirm: "本当に良いですか？"}, method: :delete, class: 'btn btn-danger btn-xs' %>
+                  <%= link_to "編集", edit_article_comment_path(comment.article_id, comment.id), class: 'btn btn-primary btn-xs' %>
               <% end %>
+              </li>
             </ul>
         <% end %>
       </div>

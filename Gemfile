@@ -49,6 +49,11 @@ group :production do
     gem 'pg'
     gem 'rails_12factor'
 end
+
+group :development do
+  gem 'bullet'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

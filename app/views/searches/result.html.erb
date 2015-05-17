@@ -1,0 +1,60 @@
+<br/>
+<% if @searched_result.present? %>
+    <% @searched_result.each do |music| %>
+        <div class="table">
+          <table>
+            <tr>
+              <td width="180px">アルバムアーティスト名</td>
+              <td><%= music[:album_artist_name] %>
+            </tr>
+            <tr>
+              <td>アルバムタイトル</td>
+              <td><%= music[:album_title] %></td>
+            </tr>
+            <tr>
+              <td>ジャンル</td>
+              <td>
+                <% music[:genre].each do |genre| %>
+                    <%= genre[:text] + ' / ' %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>ムード</td>
+              <td>
+                <% music[:tracks].each do |track| %>
+                    <% track[:mood].each do |mood| %>
+                        <%= mood[:text] + " / " %>
+                    <% end %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>テンポ</td>
+              <td>
+                <% music[:tracks].each do |track| %>
+                    <% track[:tempo].each do |tempo| %>
+                        <%= tempo[:text] + " / " %>
+                    <% end %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>説明</td>
+              <td><%= link_to 'プロフィール情報', music[:artist_image_url][1] %></td>
+            </tr>
+            <tr>
+              <td>アルバムアート</td>
+              <td><img src="<%= music[:album_art_url][0] %>"/></td>
+            </tr>
+            <tr>
+              <td>アーティスト画像</td>
+              <td><img src="<%= music[:artist_image_url][0] %>"/></td>
+            </tr>
+          </table>
+        </div>
+    <% end %>
+<% end %>
+<br/>
+
+<div><%= link_to "戻る", searches_path %></div>

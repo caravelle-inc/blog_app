@@ -1,12 +1,6 @@
 
   <div class="content">
-    <% if user_signed_in? %>
         <h2>プロフィール編集 </h2>
-    <% end %>
-
-    <% if admin_signed_in? %>
-        <h2>管理者プロフィール編集 </h2>
-    <% end %>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
         <%= devise_error_messages! %>

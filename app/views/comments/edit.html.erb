@@ -1,21 +1,29 @@
+<% if @comment.errors.any? %>
+    <div class="font-color-red">
+      <ul>
+        <% @comment.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
 
-  <h1>Comment Edit</h1>
+<h1>コメント編集</h1>
 
+<%= form_for ([@article, @comment]) do |f| %>
 
-    <%= form_for ([@article, @comment]) do |f| %>
+    <p>
+      <%= f.label :comment %><br>
+      <%= f.text_area :comment %>
+      <% if @comment.errors.any? %>
+          <%= @comment.errors.messages[:comment][0] %>
+      <% end %>
+    </p>
 
-        <p>
-          <%= f.label :comment %><br>
-          <%= f.text_area :comment %>
-          <% if @comment.errors.any? %>
-              <%= @comment.errors.messages[:comment][0] %>
-          <% end %>
-        </p>
+    <p>
+      <%= f.submit :"作成", :class => "btn btn-primary" %>
+    </p>
 
-        <p>
-          <%= f.submit %>
-        </p>
+<% end %>
 
-    <% end %>
-
-    <p><%= link_to "[Back]", article_path(@article.id) %></p>
+<p><%= link_to "戻る", article_path(@article.id) %></p>
