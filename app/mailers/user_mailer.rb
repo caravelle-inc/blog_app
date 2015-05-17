@@ -8,6 +8,6 @@ class UserMailer < ActionMailer::Base
   def registration_confirmation(email)
     @greeting = "登録完了しました！"
 
-    mail (:subject => "登録完了のお知らせ", to: email)
+    mail(subject: "登録完了のお知らせ", to: email)
   end
 end
