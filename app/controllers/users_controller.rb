@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:show, :destroy]
+  before_action :set_user, only: [:show, :destroy, :user_articles]
+  before_action :authenticate_user!, only: [:destroy]
 
   def index
-    @users = User.all
-    @articles_new = Article.order('created_at DESC')
+    @users = User.where.not(id: current_user.id )
   end
 
   def show
@@ -13,8 +13,16 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    if not_current_user?(current_user)
+      flash[:alert] = "管理者以外は他のユーザを削除できません。"
+      redirect_to admins_path
+    end
     @user.destroy
     redirect_to admins_path
+  end
+
+  def user_articles
+    @user_articles = @user.articles.order('created_at DESC')
   end
 
   private

@@ -1,36 +1,16 @@
-  <h2>Article New</h2>
+<% if @article.errors.any? %>
+    <div class="alert alert-danger">
+      <h3><%= @article.errors.count %>件のエラーがあります。</h3>
+      <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
 
+<h2>記事作成</h2>
 
+<%= render 'form' %>
 
-    <%= form_for @article do |f| %>
-
-        <p>
-          <%= f.label :title %><br>
-          <%= f.text_field :title %>
-          <% if @article.errors.any? %>
-              <%= @article.errors.messages[:title][0]%>
-          <% end %>
-        </p>
-
-        <p>
-          <%= f.label :content %><br>
-          <%= f.text_area :content %>
-          <% if @article.errors.any? %>
-              <%= @article.errors.messages[:content][0]%>
-          <% end %>
-        </p>
-
-        <p>
-          <%= f.label :youtube_url %><br>
-          <%= f.url_field :youtube_url %>
-          <% if @article.errors.any? %>
-              <%= @article.errors.messages[:youtube_url][0]%>
-          <% end %>
-        </p>
-
-        <p>
-          <%= f.submit :"作成", :class => "btn btn-primary" %>
-        </p>
-
-    <% end %>
 
