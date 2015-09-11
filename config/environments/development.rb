@@ -53,6 +53,7 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+
   # config.after_initialize do
   #   Bullet.enable  = true   # bullet を有効にする
   #
@@ -74,5 +75,6 @@ Rails.application.configure do
   #   # even if they are not in your main app
   #   #Bullet.stacktrace_includes = [ 'your_gem', 'your_middleware' ]
   # end
+
 
 end
