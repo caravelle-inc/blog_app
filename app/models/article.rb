@@ -16,7 +16,7 @@ class Article < ActiveRecord::Base
 
 
   def article_owner?(current_user)
-    self.user_id != current_user.id
+    self.user_id == current_user.id
   end
 
   def favorite_check?(current_user)

@@ -15,7 +15,8 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    if comment_owner?(current_user)
+    if @comment.comment_owner?(current_user)
+    else
       flash[:alert] = "他のユーザのコメントは編集できません。"
       redirect_to article_path(@comment.article_id)
     end
@@ -32,13 +33,14 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    if comment_owner?(current_user)
+    if @comment.comment_owner?(current_user)
+      @comment.destroy
+      flash[:alert] = "コメントを削除しました。"
+      redirect_to article_path(@comment.article_id)
+    else
       flash[:alert] = "他のユーザのコメントは削除できません。"
       redirect_to article_path(@comment.article_id)
     end
-    @comment.destroy
-    flash[:alert] = "コメントを削除しました。"
-    redirect_to article_path(@comment.article_id)
   end
 
 

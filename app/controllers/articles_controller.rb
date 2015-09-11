@@ -46,6 +46,7 @@ class ArticlesController < ApplicationController
 
   def edit
     if @article.article_owner?(current_user)
+    else
       flash[:alert] = "他のユーザの記事は編集できません。"
       redirect_to user_path(@article.user_id)
     end
@@ -63,12 +64,13 @@ class ArticlesController < ApplicationController
 
   def destroy
     if @article.article_owner?(current_user)
+      @article.destroy
+      flash[:alert] = "記事を削除しました。"
+      redirect_to(:back)
+    else
       flash[:alert] = "他のユーザの記事は削除できません。"
       redirect_to new_admin_session_path
     end
-    @article.destroy
-    flash[:alert] = "記事を削除しました。"
-    redirect_to(:back)
   end
 
   private
