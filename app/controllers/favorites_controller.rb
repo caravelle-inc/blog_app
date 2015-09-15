@@ -15,7 +15,7 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    @favorite = FavoriteArticle.find_by(article_id: params[:id], user_id: current_user.id)
+    @favorite = FavoriteArticle.find_by(id: params[:id])
     @favorite.destroy
     flash[:alert] = "お気に入りを削除しました。"
     redirect_to(:back)
