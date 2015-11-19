@@ -81,7 +81,7 @@
 
   def set_article
     @article = Article.find(params[:id])
-    puts 'a'
+    puts 'aaaaaa'
   end
 
   def created_article
