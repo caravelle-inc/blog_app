@@ -1,4 +1,4 @@
-class ArticlesController < ApplicationController
+class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
@@ -81,6 +81,7 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = Article.find(params[:id])
+    puts 'aaa'
   end
 
   def created_article

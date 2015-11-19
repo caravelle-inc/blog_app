@@ -23,3 +23,7 @@ development.rb
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+
+.idea/blog_app.iml
+
+.idea/blog_app.iml
